@@ -138,7 +138,6 @@
         }
 
         .logo-mark::before {
-            content: '🚲';
             font-size: 1.2rem;
         }
 
@@ -197,43 +196,13 @@
         /* ===== HERO ===== */
         .hero {
             position: relative;
-            min-height: 100vh;
+            min-height: auto;
             display: flex;
             align-items: center;
-            padding-top: 100px;
+            padding-top: 140px;
             padding-bottom: 80px;
             overflow: hidden;
             background: linear-gradient(135deg, var(--fondo-claro) 0%, var(--fondo-suave) 100%);
-        }
-
-        .hero-image-container {
-            position: absolute;
-            right: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 45%;
-            height: 80%;
-            z-index: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .hero-image-placeholder {
-            width: 100%;
-            height: 100%;
-            border-radius: 20px 0 0 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-image-placeholder img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
         }
 
         .hero-bg {
@@ -252,20 +221,61 @@
             opacity: 0.5;
         }
 
-        .hero-content {
+        .hero-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 48px;
+            width: 100%;
             position: relative;
             z-index: 2;
-            max-width: 55%;
         }
 
-        @media (max-width: 768px) {
-            .hero-image-container {
-                display: none;
+        .hero-content {
+            flex: 1.2;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-image-container {
+            flex: 0.8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-image-placeholder {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 4 / 3;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-image-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @media (max-width: 992px) {
+            .hero-inner {
+                flex-direction: column;
+                text-align: center;
+                gap: 40px;
             }
 
             .hero-content {
                 max-width: 100%;
-                text-align: center;
+                flex: none;
+            }
+
+            .hero-image-container {
+                flex: none;
+                width: 100%;
+                max-width: 500px;
+                margin: 0 auto;
             }
 
             .hero-stats {
@@ -505,43 +515,88 @@
         }
 
         .accident-panel {
-            background: var(--fondo-claro);
+            background: var(--fondo-suave);
             border-radius: var(--radius);
-            padding: 38px;
-            border: 1px solid rgba(79, 70, 229, 0.2);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            padding: 40px;
+            border: 1px solid rgba(79, 70, 229, 0.15);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.03);
         }
 
-        .accident-row {
+        .accident-header {
             display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            padding: 18px 0;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 28px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            padding-bottom: 16px;
         }
 
-        .accident-row:last-child {
-            border-bottom: none;
-        }
-
-        .accident-label {
-            font-size: 0.92rem;
-            color: var(--texto-muted);
-            max-width: 200px;
-        }
-
-        .accident-value {
+        .accident-header h3 {
             font-family: var(--display);
-            font-size: 1.8rem;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--texto-oscuro);
+        }
+
+        .accident-icon {
+            font-size: 1.5rem;
+        }
+
+        .accident-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        @media (max-width: 860px) {
+            .accident-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+        }
+
+        .accident-card {
+            background: var(--fondo-claro);
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .accident-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+        }
+
+        .accident-card.highlight {
+            border-color: rgba(244, 63, 94, 0.3);
+            background: linear-gradient(180deg, var(--blanco) 0%, rgba(244, 63, 94, 0.02) 100%);
+        }
+
+        .accident-card .accident-value {
+            font-family: var(--display);
+            font-size: 2.2rem;
             font-weight: 700;
             color: var(--naranja);
+            line-height: 1;
+        }
+
+        .accident-card .accident-label {
+            font-size: 0.9rem;
+            color: var(--texto-muted);
+            line-height: 1.4;
         }
 
         .accident-foot {
-            margin-top: 20px;
-            font-size: 0.85rem;
+            margin-top: 24px;
+            font-size: 0.8rem;
             color: var(--texto-muted);
-            line-height: 1.5;
+            text-align: right;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            padding-top: 12px;
         }
 
         /* ===== RED / MAPA ===== */
@@ -549,99 +604,111 @@
             background: var(--fondo-suave);
         }
 
-        .map-card {
-            background: var(--fondo-claro);
-            border-radius: 24px;
-            padding: 48px;
-            border: 1px solid rgba(129, 140, 248, 0.15);
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+        .ejes-container {
+            margin-top: 48px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
         }
 
-        @media (max-width:640px) {
-            .map-card {
-                padding: 28px 20px;
+        @media (max-width: 768px) {
+            .ejes-container {
+                grid-template-columns: 1fr !important;
+                gap: 24px !important;
             }
         }
 
-        .map-legend {
-            display: flex;
-            gap: 28px;
-            margin-bottom: 36px;
-            flex-wrap: wrap;
-            font-size: 0.85rem;
-            color: var(--texto-muted);
+        .eje-card {
+            background: var(--fondo-claro);
+            border-radius: var(--radius);
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+            transition: transform 0.2s, box-shadow 0.2s;
         }
 
-        .map-legend span {
+        .eje-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.04);
+        }
+
+        .eje-card.longitudinal {
+            border: 1px solid rgba(79, 70, 229, 0.15);
+        }
+
+        .eje-card.transversal {
+            border: 1px solid rgba(244, 63, 94, 0.15);
+        }
+
+        .eje-card-header {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 12px;
+            margin-bottom: 20px;
         }
 
-        .dot {
-            width: 9px;
-            height: 9px;
+        .eje-card-header h3 {
+            font-family: var(--display);
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--texto-oscuro);
+        }
+
+        .eje-card-header span {
+            font-size: 2rem;
+        }
+
+        .eje-card p {
+            color: var(--texto-muted);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .eje-node-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .eje-node-item {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--texto-oscuro);
+            font-weight: 500;
+            transition: color 0.2s, transform 0.2s;
+            padding: 4px 8px;
+            border-radius: 8px;
+        }
+
+        .eje-node-item:hover {
+            transform: translateX(4px);
+        }
+
+        .longitudinal .eje-node-item:hover {
+            color: var(--accent);
+            background: rgba(79, 70, 229, 0.04);
+        }
+
+        .transversal .eje-node-item:hover {
+            color: var(--naranja);
+            background: rgba(244, 63, 94, 0.04);
+        }
+
+        .eje-node-dot {
+            width: 8px;
+            height: 8px;
             border-radius: 50%;
             display: inline-block;
         }
 
-        .dot.long {
+        .longitudinal .eje-node-dot {
             background: var(--accent);
         }
 
-        .dot.trans {
+        .transversal .eje-node-dot {
             background: var(--naranja);
-        }
-
-        #netmap {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .node-label {
-            font-family: var(--body);
-            font-size: 11.5px;
-            font-weight: 600;
-            fill: var(--texto-oscuro);
-        }
-
-        .node-circle {
-            fill: var(--fondo-claro);
-            stroke-width: 2.5;
-            transition: transform .25s;
-        }
-
-        .node-circle.long {
-            stroke: var(--accent);
-        }
-
-        .node-circle.trans {
-            stroke: var(--naranja);
-        }
-
-        .node-group {
-            cursor: pointer;
-        }
-
-        .node-group:hover .node-circle {
-            transform: scale(1.25);
-        }
-
-        .edge {
-            stroke-width: 2.5;
-            fill: none;
-            opacity: 0.65;
-        }
-
-        .edge.long {
-            stroke: var(--accent);
-        }
-
-        .edge.trans {
-            stroke: var(--naranja);
         }
 
         /* ===== RUTAS / RESERVA ===== */
@@ -764,6 +831,15 @@
             box-shadow: 0 0 8px var(--accent);
         }
 
+        .estado.agotado {
+            color: #EF4444;
+        }
+
+        .estado.agotado::before {
+            background: #EF4444;
+            box-shadow: 0 0 8px #EF4444;
+        }
+
         .ruta-path {
             display: flex;
             align-items: center;
@@ -826,6 +902,14 @@
         .btn-reservar.reservado {
             background: var(--gris-linea);
             color: var(--texto-muted);
+            pointer-events: none;
+        }
+
+        .btn-reservar:disabled {
+            background: rgba(239, 68, 68, 0.1);
+            color: #EF4444;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            cursor: not-allowed;
             pointer-events: none;
         }
 
@@ -1288,7 +1372,7 @@
 
     <nav>
         <div class="nav-inner">
-            <div class="logo"><span class="logo-mark"></span>EcoRuta Riobamba</div>
+            <div class="logo"><span class="logo-mark"><img src="assets/logo.jpg" alt="EcoRuta Logo"></span>EcoRuta Riobamba</div>
             <button class="nav-toggle" id="navToggle" aria-label="Abrir menú">
                 <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none">
                     <line x1="3" y1="12" x2="21" y2="12"></line>
@@ -1316,29 +1400,31 @@
             </defs>
             <rect width="1180" height="800" fill="url(#grid)" />
         </svg>
-        <div class="wrap hero-content">
-            <span class="eyebrow">Movilidad activa · Riobamba</span>
-            <h1 class="hero-title">Una ciudad <em>conectada</em> a pedal.</h1>
-            <p class="hero-sub">10 nodos, una red de ciclovías existentes y una bicicleta siempre cerca. Riobamba ya
-                tiene todo lo necesario — solo falta conectarlo.</p>
-            <div class="hero-stats">
-                <div>
-                    <div class="stat-num">$<span>0,25</span></div>
-                    <div class="stat-label">por hora de uso, frente a $2–3 en taxi</div>
-                </div>
-                <div>
-                    <div class="stat-num"><span>10</span></div>
-                    <div class="stat-label">nodos interconectados en toda la ciudad</div>
-                </div>
-                <div>
-                    <div class="stat-num"><span>1.272</span></div>
-                    <div class="stat-label">accidentes de tránsito en Riobamba, solo en el primer semestre de 2024</div>
+        <div class="wrap hero-inner">
+            <div class="hero-content">
+                <span class="eyebrow">Movilidad activa · Riobamba</span>
+                <h1 class="hero-title">Una ciudad <em>conectada</em> a pedal.</h1>
+                <p class="hero-sub">10 nodos, una red de ciclovías existentes y una bicicleta siempre cerca. Riobamba ya
+                    tiene todo lo necesario — solo falta conectarlo.</p>
+                <div class="hero-stats">
+                    <div>
+                        <div class="stat-num">$<span>0,25</span></div>
+                        <div class="stat-label">por hora de uso, frente a $2–3 en taxi</div>
+                    </div>
+                    <div>
+                        <div class="stat-num"><span>10</span></div>
+                        <div class="stat-label">nodos interconectados en toda la ciudad</div>
+                    </div>
+                    <div>
+                        <div class="stat-num"><span>1.272</span></div>
+                        <div class="stat-label">accidentes de tránsito en Riobamba, solo en el primer semestre de 2024</div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="hero-image-container">
-            <div class="hero-image-placeholder">
-                <img src="assets/fondoBici.jpg" alt="EcoRuta Riobamba">
+            <div class="hero-image-container">
+                <div class="hero-image-placeholder">
+                    <img src="assets/fondoBici.jpg" alt="EcoRuta Riobamba">
+                </div>
             </div>
         </div>
     </header>
@@ -1366,19 +1452,25 @@
                 </div>
             </div>
             <div class="accident-panel" style="margin-top: 48px;">
-                <div class="accident-row">
-                    <span class="accident-label">Accidentes de tránsito en 2023</span>
-                    <span class="accident-value">1.429</span>
+                <div class="accident-header">
+                    <span class="accident-icon">⚠️</span>
+                    <h3>Siniestralidad Vial en Chimborazo</h3>
                 </div>
-                <div class="accident-row">
-                    <span class="accident-label">Accidentes solo en el primer semestre de 2024</span>
-                    <span class="accident-value">1.272</span>
+                <div class="accident-grid">
+                    <div class="accident-card">
+                        <span class="accident-value">1.429</span>
+                        <span class="accident-label">Accidentes de tránsito registrados en 2023</span>
+                    </div>
+                    <div class="accident-card highlight">
+                        <span class="accident-value">1.272</span>
+                        <span class="accident-label">Accidentes solo en el primer semestre de 2024</span>
+                    </div>
+                    <div class="accident-card">
+                        <span class="accident-value">74,3%</span>
+                        <span class="accident-label">De los accidentes de Chimborazo ocurren en Riobamba</span>
+                    </div>
                 </div>
-                <div class="accident-row">
-                    <span class="accident-label">Del total de accidentes de Chimborazo, ocurridos en Riobamba</span>
-                    <span class="accident-value">74,3%</span>
-                </div>
-                <div class="accident-foot">Fuente: datos reportados por ECU 911.</div>
+                <div class="accident-foot">Fuente: Datos oficiales reportados por el ECU 911.</div>
             </div>
         </div>
     </section>
@@ -1390,85 +1482,70 @@
                 <span class="section-tag">La solución</span>
                 <h2>Una red de 10 nodos, dos ejes.</h2>
                 <p class="section-sub">EcoRuta integra las ciclovías existentes en un eje longitudinal y uno
-                    transversal, permitiendo retirar una bicicleta en un punto y devolverla en otro. Haz clic en un nodo
-                    para seleccionarlo.</p>
+                    transversal, permitiendo retirar una bicicleta en un punto y devolverla en otro. Haz clic en una
+                    ruta para pre-seleccionarla.</p>
             </div>
-            <div class="map-card" style="margin-top: 48px;">
-                <div class="map-legend">
-                    <span><span class="dot long"></span> Eje Longitudinal (Eje Universitario/Urbano)</span>
-                    <span><span class="dot trans"></span> Eje Transversal (Eje Patrimonial/Comercial)</span>
+            <div class="ejes-container">
+                <div class="eje-card longitudinal">
+                    <div class="eje-card-header">
+                        <span>🔗</span>
+                        <h3>Eje Longitudinal</h3>
+                    </div>
+                    <p>Conecta de norte a sur la ciudad a través del corredor universitario y urbano, facilitando el
+                        transporte diario para estudiantes y trabajadores. Selecciona una ruta para reservar:</p>
+                    <ul class="eje-node-list">
+                        <li class="eje-node-item" onclick="selectRutaNode('la-campana-espeech')">
+                            <span class="eje-node-dot"></span>
+                            La Campana → ESPOCH
+                        </li>
+                        <li class="eje-node-item" onclick="selectRutaNode('espeech-terminal')">
+                            <span class="eje-node-dot"></span>
+                            ESPOCH → Terminal Terrestre
+                        </li>
+                        <li class="eje-node-item" onclick="selectRutaNode('terminal-plaza')">
+                            <span class="eje-node-dot"></span>
+                            Terminal Terrestre → Plaza Alfaro
+                        </li>
+                        <li class="eje-node-item" onclick="selectRutaNode('plaza-argentinos')">
+                            <span class="eje-node-dot"></span>
+                            Plaza Alfaro → Argentinos
+                        </li>
+                        <li class="eje-node-item" onclick="selectRutaNode('argentinos-celso')">
+                            <span class="eje-node-dot"></span>
+                            Argentinos → Celso Rodríguez y Edelberto Bonilla
+                        </li>
+                    </ul>
                 </div>
-                <svg id="netmap" viewBox="0 0 800 450">
-                    <defs>
-                        <linearGradient id="grad-long" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="var(--accent)" />
-                            <stop offset="100%" stop-color="var(--accent-soft)" />
-                        </linearGradient>
-                        <linearGradient id="grad-trans" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="var(--naranja)" />
-                            <stop offset="100%" stop-color="#FF8A65" />
-                        </linearGradient>
-                    </defs>
-
-                    <!-- Edges (routes) -->
-                    <!-- Longitudinal -->
-                    <path d="M 80,100 L 220,130 L 360,180 L 460,260 L 580,300 L 720,320" class="edge long" />
-                    <!-- Transversal -->
-                    <path d="M 180,380 L 280,330 L 400,280 L 460,260 L 520,200 L 640,110" class="edge trans" />
-
-                    <!-- Node groups (circles + text) -->
-                    <!-- Longitudinal Nodes -->
-                    <g class="node-group" onclick="selectRutaNode('la-campana-espeech')">
-                        <circle cx="80" cy="100" r="8" class="node-circle long" />
-                        <text x="80" y="80" text-anchor="middle" class="node-label">La Campana</text>
-                    </g>
-                    <g class="node-group" onclick="selectRutaNode('espeech-terminal')">
-                        <circle cx="220" cy="130" r="8" class="node-circle long" />
-                        <text x="220" y="115" text-anchor="middle" class="node-label">ESPOCH</text>
-                    </g>
-                    <g class="node-group" onclick="selectRutaNode('terminal-plaza')">
-                        <circle cx="360" cy="180" r="8" class="node-circle long" />
-                        <text x="360" y="165" text-anchor="middle" class="node-label">Terminal</text>
-                    </g>
-                    <g class="node-group" onclick="selectRutaNode('argentinos-celso')">
-                        <circle cx="580" cy="300" r="8" class="node-circle long" />
-                        <text x="580" y="320" text-anchor="middle" class="node-label">Argentinos</text>
-                    </g>
-                    <g class="node-group" onclick="selectRutaNode('argentinos-celso')">
-                        <circle cx="720" cy="320" r="8" class="node-circle long" />
-                        <text x="720" y="340" text-anchor="middle" class="node-label">Celso Rodríguez</text>
-                    </g>
-
-                    <!-- Transversal Nodes -->
-                    <g class="node-group" onclick="selectRutaNode('unach-edelberto')">
-                        <circle cx="180" cy="380" r="8" class="node-circle trans" />
-                        <text x="180" y="400" text-anchor="middle" class="node-label">UNACH</text>
-                    </g>
-                    <g class="node-group" onclick="selectRutaNode('edelberto-juan')">
-                        <circle cx="280" cy="330" r="8" class="node-circle trans" />
-                        <text x="280" y="315" text-anchor="middle" class="node-label">Edelberto Bonilla</text>
-                    </g>
-                    <g class="node-group" onclick="selectRutaNode('juan-estacion')">
-                        <circle cx="400" cy="280" r="8" class="node-circle trans" />
-                        <text x="400" y="265" text-anchor="middle" class="node-label">Juan Montalvo</text>
-                    </g>
-                    <g class="node-group" onclick="selectRutaNode('estacion-9octubre')">
-                        <circle cx="520" cy="200" r="8" class="node-circle trans" />
-                        <text x="520" y="185" text-anchor="middle" class="node-label">Estación</text>
-                    </g>
-                    <g class="node-group" onclick="selectRutaNode('9octubre-plaza')">
-                        <circle cx="640" cy="110" r="8" class="node-circle trans" />
-                        <text x="640" y="95" text-anchor="middle" class="node-label">9 de Octubre</text>
-                    </g>
-
-                    <!-- Intersection Node (Plaza Alfaro) -->
-                    <g class="node-group" onclick="selectRutaNode('plaza-argentinos')">
-                        <circle cx="460" cy="260" r="11" class="node-circle long"
-                            style="stroke: var(--accent); fill: var(--naranja); stroke-width: 3;" />
-                        <text x="460" y="240" text-anchor="middle" class="node-label" style="font-weight: 800;">Plaza
-                            Alfaro</text>
-                    </g>
-                </svg>
+                <div class="eje-card transversal">
+                    <div class="eje-card-header">
+                        <span>🔁</span>
+                        <h3>Eje Transversal</h3>
+                    </div>
+                    <p>Conecta los sectores este y oeste, atravesando zonas residenciales, comerciales y patrimoniales
+                        con alta densidad de tráfico peatonal. Selecciona una ruta para reservar:</p>
+                    <ul class="eje-node-list">
+                        <li class="eje-node-item" onclick="selectRutaNode('unach-edelberto')">
+                            <span class="eje-node-dot"></span>
+                            UNACH (vía a Guano) → Edelberto Bonilla y Sucre
+                        </li>
+                        <li class="eje-node-item" onclick="selectRutaNode('edelberto-juan')">
+                            <span class="eje-node-dot"></span>
+                            Edelberto Bonilla y Sucre → Juan Montalvo y Argentinos
+                        </li>
+                        <li class="eje-node-item" onclick="selectRutaNode('juan-estacion')">
+                            <span class="eje-node-dot"></span>
+                            Juan Montalvo y Argentinos → Estación Ferrocarril
+                        </li>
+                        <li class="eje-node-item" onclick="selectRutaNode('estacion-9octubre')">
+                            <span class="eje-node-dot"></span>
+                            Estación Ferrocarril → 9 de Octubre y Juan Montalvo
+                        </li>
+                        <li class="eje-node-item" onclick="selectRutaNode('9octubre-plaza')">
+                            <span class="eje-node-dot"></span>
+                            9 de Octubre y Juan Montalvo → Plaza Alfaro
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </section>
@@ -1627,15 +1704,9 @@
                     <p>Ingresa tus datos para confirmar tu bicicleta</p>
                 </div>
                 <form id="reservaForm">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="nombre">Nombre completo</label>
-                            <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="cedula">Cédula</label>
-                            <input type="text" id="cedula" name="cedula" placeholder="Número de cédula" required>
-                        </div>
+                    <div class="form-group">
+                        <label for="nombre">Nombre completo</label>
+                        <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
@@ -1690,10 +1761,11 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="observaciones">Observaciones (opcional)</label>
-                        <textarea id="observaciones" name="observaciones" rows="3"
-                            placeholder="Algún comentario adicional..."></textarea>
+                    <div class="precio-resumen"
+                        style="background: var(--fondo-claro); border-radius: 12px; padding: 20px; border: 1px dashed var(--accent-soft); margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-weight: 600; color: var(--texto-oscuro);">Precio total estimado:</span>
+                        <span id="formPrecioTotal"
+                            style="font-family: var(--display); font-size: 1.5rem; font-weight: 700; color: var(--accent);">$0.25</span>
                     </div>
                     <button type="submit" class="form-submit">Confirmar reserva</button>
                 </form>
@@ -1715,6 +1787,8 @@
             <p class="modal-text">Tu bicicleta ha sido reservada exitosamente. Presenta este código en la estación para
                 recogerla.</p>
             <div class="modal-code" id="modalCode"></div>
+            <p id="modalPrecioText"
+                style="margin-bottom: 24px; font-weight: 600; color: var(--texto-oscuro); font-size: 1.15rem;"></p>
             <button class="modal-close" onclick="closeModal()">Cerrar</button>
         </div>
     </div>
@@ -1736,28 +1810,40 @@
             }
         }
 
-        // SVG Node Selection
+        // Node Selection
         function selectRutaNode(rutaValue) {
             const rutaSelect = document.getElementById('ruta');
             if (rutaSelect) {
+                // Check if the route is currently available
+                const matchedRoute = rutas.find(r => {
+                    const option = Array.from(rutaSelect.options).find(opt => opt.value === rutaValue);
+                    return option && r.nombre.includes(option.text.split(' → ')[0]);
+                });
+
+                if (matchedRoute && matchedRoute.disponible === false) {
+                    showToast(`La ruta "${matchedRoute.nombre}" está agotada actualmente.`);
+                    return;
+                }
+
                 rutaSelect.value = rutaValue;
                 document.getElementById('reserva-form').scrollIntoView({ behavior: 'smooth' });
                 const optionText = rutaSelect.options[rutaSelect.selectedIndex]?.text || '';
                 showToast(`Ruta seleccionada: ${optionText}`);
+                updateFormPrice();
             }
         }
 
         const rutas = [
-            { nombre: "La Campana → ESPOCH (lado Este)", tipo: "longitudinal", desc: "Ruta universitaria" },
-            { nombre: "ESPOCH (lado Este) → Terminal Terrestre", tipo: "longitudinal", desc: "Ruta urbana" },
-            { nombre: "Terminal Terrestre → Plaza Alfaro", tipo: "longitudinal", desc: "Ruta central" },
-            { nombre: "Plaza Alfaro → Argentinos", tipo: "longitudinal", desc: "Ruta comercial" },
-            { nombre: "Argentinos → Celso Rodríguez y Edelberto Bonilla", tipo: "longitudinal", desc: "Ruta de conexión" },
-            { nombre: "UNACH (vía a Guano) → Edelberto Bonilla y Antonio José de Sucre", tipo: "transversal", desc: "Ruta universitaria" },
-            { nombre: "Edelberto Bonilla y Antonio José de Sucre → Juan Montalvo y Argentinos", tipo: "transversal", desc: "Ruta urbana" },
-            { nombre: "Juan Montalvo y Argentinos → Estación del Ferrocarril", tipo: "transversal", desc: "Ruta patrimonial" },
-            { nombre: "Estación del Ferrocarril → 9 de Octubre y Juan Montalvo", tipo: "transversal", desc: "Ruta central" },
-            { nombre: "9 de Octubre y Juan Montalvo → Plaza Alfaro", tipo: "transversal", desc: "Ruta de integración" },
+            { nombre: "La Campana → ESPOCH (lado Este)", tipo: "longitudinal", desc: "Ruta universitaria", disponible: true },
+            { nombre: "ESPOCH (lado Este) → Terminal Terrestre", tipo: "longitudinal", desc: "Ruta urbana", disponible: false },
+            { nombre: "Terminal Terrestre → Plaza Alfaro", tipo: "longitudinal", desc: "Ruta central", disponible: true },
+            { nombre: "Plaza Alfaro → Argentinos", tipo: "longitudinal", desc: "Ruta comercial", disponible: true },
+            { nombre: "Argentinos → Celso Rodríguez y Edelberto Bonilla", tipo: "longitudinal", desc: "Ruta de conexión", disponible: false },
+            { nombre: "UNACH (vía a Guano) → Edelberto Bonilla y Antonio José de Sucre", tipo: "transversal", desc: "Ruta universitaria", disponible: true },
+            { nombre: "Edelberto Bonilla y Antonio José de Sucre → Juan Montalvo y Argentinos", tipo: "transversal", desc: "Ruta urbana", disponible: true },
+            { nombre: "Juan Montalvo y Argentinos → Estación del Ferrocarril", tipo: "transversal", desc: "Ruta patrimonial", disponible: false },
+            { nombre: "Estación del Ferrocarril → 9 de Octubre y Juan Montalvo", tipo: "transversal", desc: "Ruta central", disponible: true },
+            { nombre: "9 de Octubre y Juan Montalvo → Plaza Alfaro", tipo: "transversal", desc: "Ruta de integración", disponible: true },
         ];
 
         const grid = document.getElementById('rutaGrid');
@@ -1771,28 +1857,28 @@
                     card.className = 'ruta-card';
                     card.dataset.tipo = r.tipo;
                     const partes = r.nombre.split(' → ');
+                    const isDisponible = r.disponible !== false;
                     card.innerHTML = `
           <div class="ruta-top">
             <span class="ruta-tipo-chip">${r.tipo === 'longitudinal' ? 'Longitudinal' : 'Transversal'}</span>
-            <span class="estado">Disponible</span>
+            <span class="estado ${isDisponible ? '' : 'agotado'}">${isDisponible ? 'Disponible' : 'Agotado'}</span>
           </div>
           <div class="ruta-path">${partes[0]} <span class="arrow">→</span> ${partes[1]}</div>
           <div class="ruta-desc">${r.desc}</div>
           <div class="ruta-bottom">
             <div class="precio">$0,25 <span>/ hora</span></div>
-            <button class="btn-reservar">Reservar</button>
+            <button class="btn-reservar" ${isDisponible ? '' : 'disabled'}>${isDisponible ? 'Reservar' : 'Agotado'}</button>
           </div>
         `;
                     grid.appendChild(card);
                 });
 
-            document.querySelectorAll('.btn-reservar').forEach(btn => {
+            document.querySelectorAll('.btn-reservar:not(:disabled)').forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     const card = e.target.closest('.ruta-card');
                     const path = card.querySelector('.ruta-path').textContent.trim();
                     const rutaSelect = document.getElementById('ruta');
 
-                    // Encontrar la opción correspondiente en el select
                     const rutaText = path.replace(' → ', ' ');
                     for (let option of rutaSelect.options) {
                         if (option.text.includes(rutaText.split(' ')[0]) && option.text.includes(rutaText.split(' ')[2])) {
@@ -1801,8 +1887,8 @@
                         }
                     }
 
-                    // Scroll al formulario
                     document.getElementById('reserva-form').scrollIntoView({ behavior: 'smooth' });
+                    updateFormPrice();
                 });
             });
         }
@@ -1823,19 +1909,39 @@
             });
         });
 
+        // Price calculation in form
+        const duracionSelect = document.getElementById('duracion');
+        const precioTotalElement = document.getElementById('formPrecioTotal');
+
+        function updateFormPrice() {
+            if (duracionSelect && precioTotalElement) {
+                const hours = parseInt(duracionSelect.value) || 1;
+                const total = (hours * 0.25).toFixed(2);
+                precioTotalElement.textContent = `$${total}`;
+            }
+        }
+
+        if (duracionSelect) {
+            duracionSelect.addEventListener('change', updateFormPrice);
+            updateFormPrice();
+        }
+
         // Form submission handler
         document.getElementById('reservaForm').addEventListener('submit', (e) => {
             e.preventDefault();
             const formData = new FormData(e.target);
-            const nombre = formData.get('nombre');
+            const duracion = parseInt(formData.get('duracion')) || 1;
+            const total = (duracion * 0.25).toFixed(2);
 
             // Generar código aleatorio
             const codigo = generarCodigoAleatorio();
             document.getElementById('modalCode').textContent = codigo;
+            document.getElementById('modalPrecioText').textContent = `Total a pagar: $${total}`;
 
             // Mostrar modal
             document.getElementById('modal').classList.add('show');
             e.target.reset();
+            updateFormPrice();
         });
 
         function generarCodigoAleatorio() {
