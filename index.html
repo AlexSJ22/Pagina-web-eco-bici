@@ -14,10 +14,10 @@
             --fondo-claro: #FFFFFF;
             --fondo-suave: #F8F9FA;
             --gris-medio: #E9ECEF;
-            --accent: #4F46E5;
-            /* Indigo */
-            --accent-soft: #818CF8;
-            /* Soft Indigo */
+            --accent: #059669;
+            /* Eco Green */
+            --accent-soft: #34d399;
+            /* Soft Eco Green */
             --blanco: #FFFFFF;
             --texto-oscuro: #1F2937;
             --texto-muted: #6B7280;
@@ -95,7 +95,7 @@
             z-index: 100;
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(79, 70, 229, 0.15);
+            border-bottom: 1px solid rgba(5, 150, 105, 0.15);
             box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
         }
 
@@ -420,19 +420,19 @@
 
         /* ===== SECTION GENERIC ===== */
         section {
-            padding: 80px 0;
+            padding: 120px 0;
             position: relative;
         }
 
         @media (max-width:640px) {
             section {
-                padding: 50px 0;
+                padding: 80px 0;
             }
         }
 
         .section-head {
             max-width: 640px;
-            margin-bottom: 40px;
+            margin-bottom: 64px;
         }
 
         .section-tag {
@@ -623,6 +623,12 @@
             border-radius: var(--radius);
             padding: 40px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .eje-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.04);
         }
 
         .eje-card.longitudinal {
@@ -760,100 +766,198 @@
         }
 
         .ruta-card {
-            background: var(--fondo-suave);
+            background: #ffffff;
             border-radius: var(--radius);
-            padding: 28px;
-            border: 1px solid rgba(0, 0, 0, 0.04);
+            padding: 0;
+            border: 1px solid rgba(0, 0, 0, 0.07);
             display: flex;
             flex-direction: column;
-            gap: 16px;
-            transition: border-color .25s, box-shadow .25s;
+            gap: 0;
+            transition: transform 0.28s cubic-bezier(.22, 1, .36, 1), box-shadow 0.28s cubic-bezier(.22, 1, .36, 1), border-color 0.25s;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .ruta-card::before {
+            content: '';
+            display: block;
+            height: 4px;
+            width: 100%;
+            background: linear-gradient(90deg, var(--accent), var(--accent-soft));
+        }
+
+        .ruta-card[data-tipo="transversal"]::before {
+            background: linear-gradient(90deg, var(--naranja), #fb7185);
+        }
+
+        .ruta-card.agotada-card::before {
+            background: linear-gradient(90deg, #9ca3af, #d1d5db);
         }
 
         .ruta-card:hover {
-            border-color: rgba(129, 140, 248, 0.3);
-            box-shadow: 0 8px 24px -12px rgba(129, 140, 248, 0.2);
+            transform: translateY(-5px);
+            border-color: rgba(79, 70, 229, 0.18);
+            box-shadow: 0 20px 48px -12px rgba(79, 70, 229, 0.18);
         }
 
         .ruta-card[data-tipo="transversal"]:hover {
-            border-color: rgba(244, 63, 94, 0.3);
-            box-shadow: 0 8px 24px -12px rgba(244, 63, 94, 0.2);
+            border-color: rgba(244, 63, 94, 0.18);
+            box-shadow: 0 20px 48px -12px rgba(244, 63, 94, 0.18);
+        }
+
+        .ruta-card.agotada-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.08);
+        }
+
+        .ruta-card-inner {
+            padding: 22px 24px 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            flex: 1;
         }
 
         .ruta-top {
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
-            gap: 12px;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .ruta-top-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .ruta-num {
+            width: 26px;
+            height: 26px;
+            border-radius: 8px;
+            background: rgba(79, 70, 229, 0.08);
+            color: var(--accent);
+            font-size: 0.7rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        [data-tipo="transversal"] .ruta-num {
+            background: rgba(244, 63, 94, 0.08);
+            color: var(--naranja);
         }
 
         .ruta-tipo-chip {
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             font-weight: 700;
-            letter-spacing: 0.06em;
+            letter-spacing: 0.07em;
             text-transform: uppercase;
-            padding: 4px 10px;
+            padding: 3px 9px;
             border-radius: 20px;
             white-space: nowrap;
         }
 
         .ruta-card[data-tipo="longitudinal"] .ruta-tipo-chip {
-            background: rgba(79, 70, 229, 0.1);
+            background: rgba(79, 70, 229, 0.08);
             color: var(--accent);
         }
 
         .ruta-card[data-tipo="transversal"] .ruta-tipo-chip {
-            background: rgba(244, 63, 94, 0.1);
+            background: rgba(244, 63, 94, 0.08);
             color: var(--naranja);
         }
 
         .estado {
             display: flex;
             align-items: center;
-            gap: 7px;
-            font-size: 0.8rem;
+            gap: 6px;
+            font-size: 0.72rem;
             font-weight: 600;
-            color: var(--accent);
+            color: #10b981;
+            white-space: nowrap;
         }
 
         .estado::before {
             content: '';
-            width: 7px;
-            height: 7px;
+            width: 6px;
+            height: 6px;
             border-radius: 50%;
-            background: var(--accent);
-            box-shadow: 0 0 8px var(--accent);
+            background: #10b981;
+            box-shadow: 0 0 6px #10b981;
+            flex-shrink: 0;
         }
 
         .estado.agotado {
-            color: #EF4444;
+            color: #9ca3af;
         }
 
         .estado.agotado::before {
-            background: #EF4444;
-            box-shadow: 0 0 8px #EF4444;
+            background: #d1d5db;
+            box-shadow: none;
         }
 
         .ruta-path {
             display: flex;
-            align-items: center;
-            gap: 10px;
-            font-family: var(--display);
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--texto-oscuro);
-            line-height: 1.3;
+            flex-direction: column;
+            gap: 4px;
         }
 
-        .ruta-path .arrow {
+        .ruta-path-label {
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 0.07em;
+            text-transform: uppercase;
+            color: var(--texto-muted);
+        }
+
+        .ruta-path-text {
+            font-family: var(--display);
+            font-size: 1.0rem;
+            font-weight: 700;
+            color: var(--texto-oscuro);
+            line-height: 1.35;
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .ruta-path-text .arrow {
             color: var(--accent);
             font-weight: 400;
+            font-size: 0.9rem;
+        }
+
+        [data-tipo="transversal"] .ruta-path-text .arrow {
+            color: var(--naranja);
+        }
+
+        .ruta-meta {
+            display: flex;
+            gap: 14px;
+        }
+
+        .ruta-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.75rem;
+            color: var(--texto-muted);
+            font-weight: 500;
+        }
+
+        .ruta-meta-item svg {
+            opacity: 0.5;
             flex-shrink: 0;
         }
 
         .ruta-desc {
-            font-size: 0.86rem;
+            font-size: 0.82rem;
             color: var(--texto-muted);
+            line-height: 1.5;
         }
 
         .ruta-bottom {
@@ -861,36 +965,64 @@
             justify-content: space-between;
             align-items: center;
             margin-top: auto;
-            padding-top: 8px;
+            padding-top: 14px;
             border-top: 1px solid rgba(0, 0, 0, 0.05);
         }
 
         .precio {
-            font-family: var(--display);
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--texto-oscuro);
+            display: flex;
+            flex-direction: column;
         }
 
-        .precio span {
-            font-size: 0.72rem;
+        .precio-amount {
+            font-family: var(--display);
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--texto-oscuro);
+            line-height: 1;
+        }
+
+        .precio-label {
+            font-size: 0.68rem;
             color: var(--texto-muted);
             font-weight: 400;
+            margin-top: 2px;
         }
 
         .btn-reservar {
-            background: var(--accent);
+            background: linear-gradient(135deg, var(--accent) 0%, #047857 100%);
             color: var(--blanco);
             font-weight: 700;
-            font-size: 0.85rem;
-            padding: 10px 22px;
+            font-size: 0.82rem;
+            padding: 10px 20px;
             border-radius: 30px;
             cursor: pointer;
-            transition: background 0.2s;
+            transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 14px rgba(5, 150, 105, 0.3);
+            border: none;
+            letter-spacing: 0.02em;
         }
 
-        .btn-reservar:hover {
-            background: var(--accent-soft);
+        .btn-reservar:hover:not(:disabled) {
+            opacity: 0.9;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 18px rgba(5, 150, 105, 0.4);
+        }
+
+        .btn-reservar:disabled {
+            background: #e5e7eb;
+            color: #9ca3af;
+            box-shadow: none;
+            cursor: not-allowed;
+        }
+
+        [data-tipo="transversal"] .btn-reservar:not(:disabled) {
+            background: linear-gradient(135deg, var(--naranja) 0%, #fb7185 100%);
+            box-shadow: 0 4px 14px rgba(244, 63, 94, 0.28);
+        }
+
+        [data-tipo="transversal"] .btn-reservar:hover:not(:disabled) {
+            box-shadow: 0 6px 18px rgba(244, 63, 94, 0.38);
         }
 
         .btn-reservar.reservado {
@@ -910,7 +1042,7 @@
         /* ===== FORMULARIO DE RESERVA ===== */
         .reserva-form-section {
             background: linear-gradient(180deg, var(--gris-medio) 0%, var(--fondo-suave) 100%);
-            padding: 70px 0;
+            padding: 100px 0;
         }
 
         .form-container {
@@ -1166,13 +1298,99 @@
             background: var(--fondo-suave);
             border-radius: var(--radius);
             padding: 36px;
-            border: 1px solid rgba(129, 140, 248, 0.1);
-            transition: transform .3s, border-color .3s;
+            border: 1px solid rgba(5, 150, 105, 0.12);
+            transition: transform .3s, border-color .3s, box-shadow .3s;
         }
 
         .impacto-card:hover {
             transform: translateY(-4px);
-            border-color: rgba(129, 140, 248, 0.3);
+            border-color: rgba(5, 150, 105, 0.3);
+            box-shadow: 0 16px 40px -12px rgba(5, 150, 105, 0.15);
+        }
+
+        .impacto-img-wrap {
+            margin-top: 56px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: 0 24px 60px -12px rgba(0, 0, 0, 0.18);
+            min-height: 340px;
+        }
+
+        .impacto-img-photo {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .impacto-img-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            display: block;
+            transition: transform 0.6s cubic-bezier(.22, 1, .36, 1);
+        }
+
+        .impacto-img-wrap:hover .impacto-img-photo img {
+            transform: scale(1.04);
+        }
+
+        .impacto-img-text {
+            background: linear-gradient(135deg, #064e3b 0%, #059669 100%);
+            padding: 48px 44px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .impacto-img-text blockquote {
+            font-family: var(--display);
+            font-size: clamp(1.2rem, 2vw, 1.5rem);
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1.35;
+            border: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .impacto-img-text p {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.78);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .impacto-img-text .impacto-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.15);
+            color: #ffffff;
+            font-size: 0.78rem;
+            font-weight: 600;
+            padding: 6px 14px;
+            border-radius: 20px;
+            width: fit-content;
+            letter-spacing: 0.04em;
+        }
+
+        @media (max-width: 768px) {
+            .impacto-img-wrap {
+                grid-template-columns: 1fr;
+                min-height: unset;
+            }
+
+            .impacto-img-photo {
+                height: 240px;
+            }
+
+            .impacto-img-text {
+                padding: 32px 28px;
+            }
         }
 
         .impacto-icon {
@@ -1199,21 +1417,53 @@
 
         /* ===== FOOTER / CIERRE ===== */
         .cierre {
-            background: var(--fondo-suave);
+            position: relative;
             text-align: center;
-            padding: 140px 0 80px;
+            padding: 140px 0 100px;
+            overflow: hidden;
+        }
+
+        .cierre-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+
+        .cierre-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+        }
+
+        .cierre-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom,
+                    rgba(6, 78, 59, 0.72) 0%,
+                    rgba(5, 150, 105, 0.58) 50%,
+                    rgba(0, 0, 0, 0.65) 100%);
+        }
+
+        .cierre .wrap {
+            position: relative;
+            z-index: 1;
         }
 
         .cierre h2 {
             font-size: clamp(2.2rem, 4.5vw, 3.4rem);
             max-width: 760px;
             margin: 0 auto;
+            color: #ffffff;
         }
 
         .cierre .section-sub {
             margin: 24px auto 0;
             max-width: 520px;
             text-align: center;
+            color: rgba(255, 255, 255, 0.82);
         }
 
         .cierre-cta {
@@ -1396,7 +1646,7 @@
             max-width: 500px;
             width: 90%;
             text-align: center;
-            border: 1px solid rgba(79, 70, 229, 0.2);
+            border: 1px solid rgba(5, 150, 105, 0.2);
             transform: scale(0.9);
             transition: transform .3s;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
@@ -1494,7 +1744,7 @@
         <svg class="hero-grid" viewBox="0 0 1180 800" preserveAspectRatio="none" aria-hidden="true">
             <defs>
                 <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
-                    <path d="M0 0 L60 0 L60 60" fill="none" stroke="rgba(79,70,229,0.06)" stroke-width="1" />
+                    <path d="M0 0 L60 0 L60 60" fill="none" stroke="rgba(5,150,105,0.06)" stroke-width="1" />
                 </pattern>
             </defs>
             <rect width="1180" height="800" fill="url(#grid)" />
@@ -1502,9 +1752,11 @@
         <div class="wrap hero-inner">
             <div class="hero-content">
                 <span class="eyebrow">Movilidad activa · Riobamba</span>
-                <h1 class="hero-title">Una ciudad <em>conectada</em> a pedal.</h1>
-                <p class="hero-sub">10 nodos, una red de ciclovías existentes y una bicicleta siempre cerca. Riobamba ya
-                    tiene todo lo necesario — solo falta conectarlo.</p>
+                <h1 class="hero-title">Una ciudad <em>conectada</em> a pedal</h1>
+                <p class="hero-sub">EcoRuta es el sistema de bicicletas compartidas de Riobamba. Conectamos el Centro
+                    Histórico, el Parque Maldonado, la Estación del Tren y los principales puntos de la ciudad.
+                    10 nodos, una red de ciclovías existentes y una bicicleta siempre cerca. Riobamba ya
+                    tiene todo lo necesario — solo falta conectarlo. Empieza a moverte verde </p>
                 <div class="hero-stats">
                     <div>
                         <div class="stat-num">$<span>0,25</span></div>
@@ -1515,8 +1767,8 @@
                         <div class="stat-label">nodos interconectados en toda la ciudad</div>
                     </div>
                     <div>
-                        <div class="stat-num"><span>1.272</span></div>
-                        <div class="stat-label">accidentes de tránsito en Riobamba, solo en el primer semestre de 2024
+                        <div class="stat-num"><span>1.318</span></div>
+                        <div class="stat-label">accidentes de tránsito en Riobamba durante todo el año 2024
                         </div>
                     </div>
                 </div>
@@ -1557,15 +1809,15 @@
                 </div>
                 <div class="accident-grid">
                     <div class="accident-card">
-                        <span class="accident-value">1.429</span>
-                        <span class="accident-label">Accidentes de tránsito registrados en 2023</span>
+                        <span class="accident-value">1.318</span>
+                        <span class="accident-label">Accidentes de tránsito registrados en 2024</span>
                     </div>
                     <div class="accident-card highlight">
-                        <span class="accident-value">1.272</span>
-                        <span class="accident-label">Accidentes solo en el primer semestre de 2024</span>
+                        <span class="accident-value">1.401</span>
+                        <span class="accident-label">Accidentes de tránsito registrados en 2025</span>
                     </div>
                     <div class="accident-card">
-                        <span class="accident-value">74,3%</span>
+                        <span class="accident-value">76,1%</span>
                         <span class="accident-label">De los accidentes de Chimborazo ocurren en Riobamba</span>
                     </div>
                 </div>
@@ -2017,11 +2269,27 @@
                         importante de los viajes cortos.</p>
                 </div>
             </div>
+
+            <!-- Imagen de impacto -->
+            <div class="impacto-img-wrap">
+                <div class="impacto-img-photo">
+                    <img src="assets/impacto.jpg" alt="Ciclistas en Riobamba usando EcoRuta" loading="lazy">
+                </div>
+                <div class="impacto-img-text">
+                    <span class="impacto-badge">🌿 EcoRuta Riobamba</span>
+                    <blockquote>"Cada pedalada es un voto por una ciudad más verde, sana y conectada."</blockquote>
+                    <p>Riobamba ya tiene las ciclovías, los estudiantes y las ganas. EcoRuta pone la bicicleta donde más
+                        se necesita.</p>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- ===== CIERRE ===== -->
     <section class="cierre">
+        <div class="cierre-bg">
+            <img src="assets/final.jpg" alt="Ciclistas de EcoRuta en Riobamba" loading="lazy">
+        </div>
         <div class="wrap">
             <h2>¿Estamos listos para pedalear hacia el futuro?</h2>
             <p class="section-sub">Riobamba ya tiene universidades, ciclovías, estudiantes y talento joven. Solo falta
@@ -2358,20 +2626,45 @@
                 .filter(r => filter === 'todas' || r.tipo === filter)
                 .forEach((r, i) => {
                     const card = document.createElement('div');
-                    card.className = 'ruta-card';
+                    card.className = 'ruta-card' + (!r.disponible ? ' agotada-card' : '');
                     card.dataset.tipo = r.tipo;
                     const partes = r.nombre.split(' → ');
                     const isDisponible = r.disponible !== false;
+                    const iconoTipo = r.tipo === 'longitudinal' ? '↕' : '↔';
+                    const distancias = [3.5, 2.8, 4.1, 2.3, 3.9, 5.2, 4.4, 3.1, 2.6, 3.8];
+                    const tiempos = [14, 11, 17, 9, 16, 21, 18, 12, 10, 15];
+                    const dist = distancias[i] || 3.5;
+                    const tiempo = tiempos[i] || 14;
                     card.innerHTML = `
-          <div class="ruta-top">
-            <span class="ruta-tipo-chip">${r.tipo === 'longitudinal' ? 'Longitudinal' : 'Transversal'}</span>
-            <span class="estado ${isDisponible ? '' : 'agotado'}">${isDisponible ? 'Disponible' : 'Agotado'}</span>
-          </div>
-          <div class="ruta-path">${partes[0]} <span class="arrow">→</span> ${partes[1]}</div>
-          <div class="ruta-desc">${r.desc}</div>
-          <div class="ruta-bottom">
-            <div class="precio">$0,25 <span>/ hora</span></div>
-            <button class="btn-reservar" ${isDisponible ? '' : 'disabled'}>${isDisponible ? 'Reservar' : 'Agotado'}</button>
+          <div class="ruta-card-inner">
+            <div class="ruta-top">
+              <div class="ruta-top-left">
+                <div class="ruta-num">${String(i + 1).padStart(2, '0')}</div>
+                <span class="ruta-tipo-chip">${r.tipo === 'longitudinal' ? 'Longitudinal' : 'Transversal'}</span>
+              </div>
+              <span class="estado ${isDisponible ? '' : 'agotado'}">${isDisponible ? 'Disponible' : 'Agotado'}</span>
+            </div>
+            <div class="ruta-path">
+              <div class="ruta-path-label">Recorrido</div>
+              <div class="ruta-path-text">${partes[0]} <span class="arrow">→</span> ${partes[1]}</div>
+            </div>
+            <div class="ruta-meta">
+              <div class="ruta-meta-item">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                ~${tiempo} min
+              </div>
+              <div class="ruta-meta-item">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>
+                ${dist} km
+              </div>
+            </div>
+            <div class="ruta-bottom">
+              <div class="precio">
+                <span class="precio-amount">$0,25</span>
+                <span class="precio-label">por hora</span>
+              </div>
+              <button class="btn-reservar" ${isDisponible ? '' : 'disabled'}>${isDisponible ? 'Reservar →' : 'Agotado'}</button>
+            </div>
           </div>
         `;
                     grid.appendChild(card);
