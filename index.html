@@ -1,0 +1,1866 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoRuta Riobamba — Una ciudad conectada a pedal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --fondo-claro: #FFFFFF;
+            --fondo-suave: #F8F9FA;
+            --gris-medio: #E9ECEF;
+            --accent: #4F46E5;
+            /* Indigo */
+            --accent-soft: #818CF8;
+            /* Soft Indigo */
+            --blanco: #FFFFFF;
+            --texto-oscuro: #1F2937;
+            --texto-muted: #6B7280;
+            --gris-linea: #D1D5DB;
+            --naranja: #F43F5E;
+            /* Coral/Rose */
+            --negro: #111827;
+            --radius: 20px;
+            --display: 'Space Grotesk', sans-serif;
+            --body: 'Inter', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--fondo-claro);
+            color: var(--texto-oscuro);
+            font-family: var(--body);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: .001ms !important;
+                transition-duration: .001ms !important;
+            }
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            font-family: inherit;
+            cursor: pointer;
+            border: none;
+            background: none;
+            color: inherit;
+        }
+
+        :focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 3px;
+            border-radius: 4px;
+        }
+
+        .wrap {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        @media (max-width:640px) {
+            .wrap {
+                padding: 0 20px;
+            }
+        }
+
+        /* ===== NAV ===== */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(79, 70, 229, 0.15);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .nav-inner {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 16px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .logo {
+            font-family: var(--display);
+            font-weight: 700;
+            font-size: 1.15rem;
+            letter-spacing: 0.01em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-mark {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-soft) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(79, 70, 229, 0.3);
+        }
+
+        .logo-mark img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .logo-mark::before {
+            content: '🚲';
+            font-size: 1.2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            font-size: 0.92rem;
+            color: var(--texto-muted);
+        }
+
+        .nav-links a {
+            transition: color .2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-toggle {
+            display: none;
+            cursor: pointer;
+            padding: 4px;
+            color: var(--texto-oscuro);
+            transition: color 0.2s;
+        }
+
+        .nav-toggle:hover {
+            color: var(--accent);
+        }
+
+        @media (max-width: 700px) {
+            .nav-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(12px);
+                border-bottom: 1px solid rgba(79, 70, 229, 0.15);
+                padding: 24px;
+                gap: 20px;
+                box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 100px;
+            padding-bottom: 80px;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--fondo-claro) 0%, var(--fondo-suave) 100%);
+        }
+
+        .hero-image-container {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 45%;
+            height: 80%;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-image-placeholder {
+            width: 100%;
+            height: 100%;
+            border-radius: 20px 0 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-image-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            background:
+                radial-gradient(ellipse 800px 500px at 80% 15%, rgba(79, 70, 229, 0.08), transparent 60%),
+                radial-gradient(ellipse 600px 600px at 10% 90%, rgba(244, 63, 94, 0.06), transparent 60%);
+        }
+
+        .hero-grid {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            opacity: 0.5;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 55%;
+        }
+
+        @media (max-width: 768px) {
+            .hero-image-container {
+                display: none;
+            }
+
+            .hero-content {
+                max-width: 100%;
+                text-align: center;
+            }
+
+            .hero-stats {
+                justify-content: center;
+            }
+
+            .eyebrow {
+                justify-content: center;
+            }
+
+            .eyebrow::before {
+                display: none;
+            }
+        }
+
+        .eyebrow {
+            font-family: var(--body);
+            font-weight: 600;
+            font-size: 0.78rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 28px;
+            opacity: 0;
+            animation: fadeUp .7s ease forwards;
+            animation-delay: .1s;
+        }
+
+        .eyebrow::before {
+            content: '';
+            width: 28px;
+            height: 1px;
+            background: var(--accent);
+        }
+
+        h1.hero-title {
+            font-family: var(--display);
+            font-weight: 700;
+            font-size: clamp(2.6rem, 6.2vw, 5.2rem);
+            line-height: 1.02;
+            letter-spacing: -0.01em;
+            max-width: 880px;
+            opacity: 0;
+            animation: fadeUp .8s ease forwards;
+            animation-delay: .25s;
+        }
+
+        .hero-title em {
+            font-style: normal;
+            color: var(--accent);
+            position: relative;
+        }
+
+        .hero-sub {
+            margin-top: 28px;
+            font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+            color: var(--texto-muted);
+            max-width: 560px;
+            line-height: 1.55;
+            opacity: 0;
+            animation: fadeUp .8s ease forwards;
+            animation-delay: .4s;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 48px;
+            margin-top: 52px;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeUp .8s ease forwards;
+            animation-delay: .55s;
+        }
+
+        .stat-num {
+            font-family: var(--display);
+            font-size: 2.1rem;
+            font-weight: 700;
+            color: var(--texto-oscuro);
+        }
+
+        .stat-num span {
+            color: var(--naranja);
+        }
+
+        .stat-label {
+            font-size: 0.82rem;
+            color: var(--texto-muted);
+            margin-top: 4px;
+            max-width: 160px;
+            line-height: 1.35;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .scroll-cue {
+            position: absolute;
+            bottom: 32px;
+            left: 32px;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.78rem;
+            color: var(--texto-muted);
+            opacity: 0;
+            animation: fadeUp .8s ease forwards;
+            animation-delay: .8s;
+        }
+
+        .scroll-cue .line {
+            width: 1px;
+            height: 30px;
+            background: linear-gradient(var(--accent-soft), transparent);
+            animation: pulse 1.8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: .4;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        /* ===== SECTION GENERIC ===== */
+        section {
+            padding: 120px 0;
+            position: relative;
+        }
+
+        @media (max-width:640px) {
+            section {
+                padding: 80px 0;
+            }
+        }
+
+        .section-head {
+            max-width: 640px;
+            margin-bottom: 64px;
+        }
+
+        .section-tag {
+            font-family: var(--body);
+            font-weight: 600;
+            font-size: 0.78rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--naranja);
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        h2 {
+            font-family: var(--display);
+            font-weight: 700;
+            font-size: clamp(1.9rem, 3.6vw, 2.8rem);
+            line-height: 1.08;
+            letter-spacing: -0.01em;
+            color: var(--texto-oscuro);
+        }
+
+        .section-sub {
+            margin-top: 18px;
+            color: var(--texto-muted);
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+
+        /* ===== PROBLEMA ===== */
+        .problema {
+            background: var(--fondo-suave);
+        }
+
+        .problema-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 72px;
+            align-items: center;
+        }
+
+        @media (max-width:860px) {
+            .problema-grid {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .problema-image {
+                min-height: 250px;
+            }
+        }
+
+        .problema-image {
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .problema-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .problema-text p {
+            color: var(--texto-muted);
+            line-height: 1.75;
+            font-size: 1.02rem;
+            margin-bottom: 18px;
+        }
+
+        .problema-text strong {
+            color: var(--texto-oscuro);
+            font-weight: 600;
+        }
+
+        .accident-panel {
+            background: var(--fondo-claro);
+            border-radius: var(--radius);
+            padding: 38px;
+            border: 1px solid rgba(79, 70, 229, 0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .accident-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 18px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .accident-row:last-child {
+            border-bottom: none;
+        }
+
+        .accident-label {
+            font-size: 0.92rem;
+            color: var(--texto-muted);
+            max-width: 200px;
+        }
+
+        .accident-value {
+            font-family: var(--display);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--naranja);
+        }
+
+        .accident-foot {
+            margin-top: 20px;
+            font-size: 0.85rem;
+            color: var(--texto-muted);
+            line-height: 1.5;
+        }
+
+        /* ===== RED / MAPA ===== */
+        .red-section {
+            background: var(--fondo-suave);
+        }
+
+        .map-card {
+            background: var(--fondo-claro);
+            border-radius: 24px;
+            padding: 48px;
+            border: 1px solid rgba(129, 140, 248, 0.15);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+        }
+
+        @media (max-width:640px) {
+            .map-card {
+                padding: 28px 20px;
+            }
+        }
+
+        .map-legend {
+            display: flex;
+            gap: 28px;
+            margin-bottom: 36px;
+            flex-wrap: wrap;
+            font-size: 0.85rem;
+            color: var(--texto-muted);
+        }
+
+        .map-legend span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .dot.long {
+            background: var(--accent);
+        }
+
+        .dot.trans {
+            background: var(--naranja);
+        }
+
+        #netmap {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .node-label {
+            font-family: var(--body);
+            font-size: 11.5px;
+            font-weight: 600;
+            fill: var(--texto-oscuro);
+        }
+
+        .node-circle {
+            fill: var(--fondo-claro);
+            stroke-width: 2.5;
+            transition: transform .25s;
+        }
+
+        .node-circle.long {
+            stroke: var(--accent);
+        }
+
+        .node-circle.trans {
+            stroke: var(--naranja);
+        }
+
+        .node-group {
+            cursor: pointer;
+        }
+
+        .node-group:hover .node-circle {
+            transform: scale(1.25);
+        }
+
+        .edge {
+            stroke-width: 2.5;
+            fill: none;
+            opacity: 0.65;
+        }
+
+        .edge.long {
+            stroke: var(--accent);
+        }
+
+        .edge.trans {
+            stroke: var(--naranja);
+        }
+
+        /* ===== RUTAS / RESERVA ===== */
+        .rutas {
+            background: linear-gradient(180deg, var(--fondo-suave) 0%, var(--gris-medio) 100%);
+        }
+
+        .filter-row {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 48px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 9px 20px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid rgba(79, 70, 229, 0.2);
+            color: var(--texto-muted);
+            transition: all .2s;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--accent-soft);
+            color: var(--texto-oscuro);
+        }
+
+        .filter-btn.active {
+            background: var(--accent);
+            color: var(--fondo-suave);
+            border-color: var(--accent);
+        }
+
+        .ruta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 22px;
+        }
+
+        @media (max-width: 640px) {
+            .ruta-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-row {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .filter-btn {
+                width: 100%;
+            }
+        }
+
+        .ruta-card {
+            background: var(--fondo-suave);
+            border-radius: var(--radius);
+            padding: 28px;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            transition: border-color .25s, box-shadow .25s;
+        }
+
+        .ruta-card:hover {
+            border-color: rgba(129, 140, 248, 0.3);
+            box-shadow: 0 8px 24px -12px rgba(129, 140, 248, 0.2);
+        }
+
+        .ruta-card[data-tipo="transversal"]:hover {
+            border-color: rgba(244, 63, 94, 0.3);
+            box-shadow: 0 8px 24px -12px rgba(244, 63, 94, 0.2);
+        }
+
+        .ruta-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .ruta-tipo-chip {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding: 4px 10px;
+            border-radius: 20px;
+            white-space: nowrap;
+        }
+
+        .ruta-card[data-tipo="longitudinal"] .ruta-tipo-chip {
+            background: rgba(79, 70, 229, 0.1);
+            color: var(--accent);
+        }
+
+        .ruta-card[data-tipo="transversal"] .ruta-tipo-chip {
+            background: rgba(244, 63, 94, 0.1);
+            color: var(--naranja);
+        }
+
+        .estado {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        .estado::before {
+            content: '';
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 8px var(--accent);
+        }
+
+        .ruta-path {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--display);
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--texto-oscuro);
+            line-height: 1.3;
+        }
+
+        .ruta-path .arrow {
+            color: var(--accent);
+            font-weight: 400;
+            flex-shrink: 0;
+        }
+
+        .ruta-desc {
+            font-size: 0.86rem;
+            color: var(--texto-muted);
+        }
+
+        .ruta-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+            padding-top: 8px;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .precio {
+            font-family: var(--display);
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--texto-oscuro);
+        }
+
+        .precio span {
+            font-size: 0.72rem;
+            color: var(--texto-muted);
+            font-weight: 400;
+        }
+
+        .btn-reservar {
+            background: var(--accent);
+            color: var(--blanco);
+            font-weight: 700;
+            font-size: 0.85rem;
+            padding: 10px 22px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-reservar:hover {
+            background: var(--accent-soft);
+        }
+
+        .btn-reservar.reservado {
+            background: var(--gris-linea);
+            color: var(--texto-muted);
+            pointer-events: none;
+        }
+
+        /* ===== FORMULARIO DE RESERVA ===== */
+        .reserva-form-section {
+            background: linear-gradient(180deg, var(--gris-medio) 0%, var(--fondo-suave) 100%);
+            padding: 100px 0;
+        }
+
+        .form-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: var(--fondo-suave);
+            border-radius: var(--radius);
+            padding: 48px;
+            border: 1px solid rgba(129, 140, 248, 0.15);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        @media (max-width:640px) {
+            .form-container {
+                padding: 32px 24px;
+            }
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 36px;
+        }
+
+        .form-header h3 {
+            font-family: var(--display);
+            font-size: 1.8rem;
+            color: var(--texto-oscuro);
+            margin-bottom: 12px;
+        }
+
+        .form-header p {
+            color: var(--texto-muted);
+            font-size: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--texto-oscuro);
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 18px;
+            background: var(--fondo-claro);
+            border: 1px solid rgba(129, 140, 248, 0.2);
+            border-radius: 12px;
+            color: var(--texto-oscuro);
+            font-family: var(--body);
+            font-size: 1rem;
+            transition: border-color .2s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--texto-muted);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width:640px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 16px;
+            background: var(--accent);
+            color: var(--blanco);
+            font-weight: 700;
+            font-size: 1rem;
+            border-radius: 30px;
+            border: none;
+            cursor: pointer;
+            margin-top: 12px;
+            font-family: var(--body);
+            transition: background 0.2s;
+        }
+
+        .form-submit:hover {
+            background: var(--accent-soft);
+        }
+
+        /* ===== APP / QR ===== */
+        .app-section {
+            background: var(--fondo-suave);
+        }
+
+        .app-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+        }
+
+        @media (max-width:860px) {
+            .app-grid {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .phone-mock {
+                max-width: 260px;
+            }
+
+            .phone-screen {
+                min-height: 400px;
+                padding: 24px 18px;
+            }
+        }
+
+        .step-list {
+            margin-top: 36px;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .step {
+            display: flex;
+            gap: 20px;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .step:last-child {
+            border-bottom: none;
+        }
+
+        .step-num {
+            font-family: var(--display);
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--accent);
+            width: 28px;
+            height: 28px;
+            border: 1px solid var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .step-text {
+            color: var(--texto-muted);
+            font-size: 0.97rem;
+            line-height: 1.5;
+            padding-top: 3px;
+        }
+
+        .step-text strong {
+            color: var(--texto-oscuro);
+        }
+
+        .phone-mock {
+            background: var(--fondo-suave);
+            border-radius: 36px;
+            padding: 14px;
+            border: 1px solid rgba(129, 140, 248, 0.2);
+            max-width: 300px;
+            margin: 0 auto;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .phone-screen {
+            background: linear-gradient(165deg, var(--gris-medio), var(--fondo-suave));
+            border-radius: 26px;
+            padding: 28px 22px;
+            min-height: 480px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .qr-box {
+            background: var(--texto-oscuro);
+            border-radius: 14px;
+            padding: 14px;
+            width: 170px;
+            height: 170px;
+        }
+
+        .qr-box svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .phone-caption {
+            text-align: center;
+            color: var(--texto-muted);
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        .phone-caption strong {
+            color: var(--accent);
+            display: block;
+            font-family: var(--display);
+            font-size: 1rem;
+            margin-bottom: 6px;
+        }
+
+        /* ===== IMPACTO ===== */
+        .impacto {
+            background: linear-gradient(180deg, var(--fondo-suave) 0%, var(--gris-medio) 100%);
+        }
+
+        .impacto-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+
+        @media (max-width:860px) {
+            .impacto-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .impacto-card {
+                padding: 24px;
+            }
+        }
+
+        .impacto-card {
+            background: var(--fondo-suave);
+            border-radius: var(--radius);
+            padding: 36px;
+            border: 1px solid rgba(129, 140, 248, 0.1);
+            transition: transform .3s, border-color .3s;
+        }
+
+        .impacto-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(129, 140, 248, 0.3);
+        }
+
+        .impacto-icon {
+            font-family: var(--display);
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 6px;
+        }
+
+        .impacto-card h3 {
+            font-family: var(--display);
+            font-size: 1.1rem;
+            color: var(--texto-oscuro);
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .impacto-card p {
+            font-size: 0.9rem;
+            color: var(--texto-muted);
+            line-height: 1.6;
+        }
+
+        /* ===== FOOTER / CIERRE ===== */
+        .cierre {
+            background: var(--fondo-suave);
+            text-align: center;
+            padding: 140px 0 80px;
+        }
+
+        .cierre h2 {
+            font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+            max-width: 760px;
+            margin: 0 auto;
+        }
+
+        .cierre .section-sub {
+            margin: 24px auto 0;
+            max-width: 520px;
+            text-align: center;
+        }
+
+        .cierre-cta {
+            margin-top: 44px;
+            display: inline-block;
+            background: var(--accent);
+            color: var(--blanco);
+            font-weight: 700;
+            padding: 16px 38px;
+            border-radius: 30px;
+            font-size: 1rem;
+            transition: transform .2s, background .2s;
+        }
+
+        .cierre-cta:hover {
+            transform: scale(1.05);
+            background: var(--accent-soft);
+        }
+
+        footer {
+            padding: 40px 0;
+            text-align: center;
+            color: var(--texto-muted);
+            font-size: 0.82rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            background: var(--fondo-suave);
+        }
+
+        /* toast */
+        .toast {
+            position: fixed;
+            bottom: 28px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: var(--accent);
+            color: var(--blanco);
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding: 14px 28px;
+            border-radius: 30px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .3s, transform .3s;
+            z-index: 200;
+            box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.4);
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* modal */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 300;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .3s;
+        }
+
+        .modal-overlay.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-content {
+            background: var(--fondo-claro);
+            border-radius: var(--radius);
+            padding: 48px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            border: 1px solid rgba(79, 70, 229, 0.2);
+            transform: scale(0.9);
+            transition: transform .3s;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .modal-overlay.show .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-icon {
+            font-size: 4rem;
+            margin-bottom: 24px;
+        }
+
+        .modal-title {
+            font-family: var(--display);
+            font-size: 1.8rem;
+            color: var(--texto-oscuro);
+            margin-bottom: 16px;
+        }
+
+        .modal-text {
+            color: var(--texto-muted);
+            margin-bottom: 32px;
+            line-height: 1.6;
+        }
+
+        .modal-code {
+            background: var(--fondo-suave);
+            border: 2px solid var(--accent);
+            border-radius: 12px;
+            padding: 24px;
+            font-family: monospace;
+            font-size: 2rem;
+            color: var(--accent);
+            letter-spacing: 4px;
+            margin-bottom: 32px;
+            font-weight: 700;
+        }
+
+        .modal-close {
+            background: var(--accent);
+            color: var(--blanco);
+            font-weight: 700;
+            font-size: 1rem;
+            padding: 14px 32px;
+            border-radius: 30px;
+            border: none;
+            cursor: pointer;
+            transition: background .2s;
+        }
+
+        .modal-close:hover {
+            background: var(--accent-soft);
+        }
+
+        @media (max-width: 640px) {
+            .modal-content {
+                padding: 32px 24px;
+            }
+
+            .modal-code {
+                font-size: 1.5rem;
+                padding: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="nav-inner">
+            <div class="logo"><span class="logo-mark"></span>EcoRuta Riobamba</div>
+            <button class="nav-toggle" id="navToggle" aria-label="Abrir menú">
+                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+            <div class="nav-links" id="navLinks">
+                <a href="#problema" onclick="closeNav()">Por qué</a>
+                <a href="#red" onclick="closeNav()">La red</a>
+                <a href="#rutas" onclick="closeNav()">Rutas</a>
+                <a href="#app" onclick="closeNav()">App</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===== HERO ===== -->
+    <header class="hero">
+        <div class="hero-bg"></div>
+        <svg class="hero-grid" viewBox="0 0 1180 800" preserveAspectRatio="none" aria-hidden="true">
+            <defs>
+                <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+                    <path d="M0 0 L60 0 L60 60" fill="none" stroke="rgba(79,70,229,0.06)" stroke-width="1" />
+                </pattern>
+            </defs>
+            <rect width="1180" height="800" fill="url(#grid)" />
+        </svg>
+        <div class="wrap hero-content">
+            <span class="eyebrow">Movilidad activa · Riobamba</span>
+            <h1 class="hero-title">Una ciudad <em>conectada</em> a pedal.</h1>
+            <p class="hero-sub">10 nodos, una red de ciclovías existentes y una bicicleta siempre cerca. Riobamba ya
+                tiene todo lo necesario — solo falta conectarlo.</p>
+            <div class="hero-stats">
+                <div>
+                    <div class="stat-num">$<span>0,25</span></div>
+                    <div class="stat-label">por hora de uso, frente a $2–3 en taxi</div>
+                </div>
+                <div>
+                    <div class="stat-num"><span>10</span></div>
+                    <div class="stat-label">nodos interconectados en toda la ciudad</div>
+                </div>
+                <div>
+                    <div class="stat-num"><span>1.272</span></div>
+                    <div class="stat-label">accidentes de tránsito en Riobamba, solo en el primer semestre de 2024</div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-image-container">
+            <div class="hero-image-placeholder">
+                <img src="assets/fondoBici.jpg" alt="EcoRuta Riobamba">
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== PROBLEMA ===== -->
+    <section class="problema" id="problema">
+        <div class="wrap">
+            <div class="problema-grid">
+                <div>
+                    <span class="section-tag">El problema</span>
+                    <h2>Riobamba tiene todas las piezas. Le falta la red.</h2>
+                    <div class="problema-text" style="margin-top:28px;">
+                        <p>Universidades, ciclovías, comercio y puntos de alta movilidad ya existen en la ciudad — pero
+                            todavía no funcionan como un sistema conectado.</p>
+                        <p>Un estudiante puede gastar <strong>3 dólares diarios</strong> en transporte: eso son
+                            <strong>90 dólares al mes</strong> y más de <strong>1.000 dólares al año</strong>, solo para
+                            moverse entre la universidad, la alimentación y su lugar de residencia.
+                        </p>
+                        <p>El problema no es que la gente no quiera usar bicicleta. Es que todavía no existe un sistema
+                            accesible, seguro y articulado para usarla todos los días.</p>
+                    </div>
+                </div>
+                <div class="problema-image">
+                    <img src="assets/ecoBici.jpg" alt="Movilidad en Riobamba">
+                </div>
+            </div>
+            <div class="accident-panel" style="margin-top: 48px;">
+                <div class="accident-row">
+                    <span class="accident-label">Accidentes de tránsito en 2023</span>
+                    <span class="accident-value">1.429</span>
+                </div>
+                <div class="accident-row">
+                    <span class="accident-label">Accidentes solo en el primer semestre de 2024</span>
+                    <span class="accident-value">1.272</span>
+                </div>
+                <div class="accident-row">
+                    <span class="accident-label">Del total de accidentes de Chimborazo, ocurridos en Riobamba</span>
+                    <span class="accident-value">74,3%</span>
+                </div>
+                <div class="accident-foot">Fuente: datos reportados por ECU 911.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== RED / MAPA ===== -->
+    <section class="red-section" id="red">
+        <div class="wrap">
+            <div class="section-head">
+                <span class="section-tag">La solución</span>
+                <h2>Una red de 10 nodos, dos ejes.</h2>
+                <p class="section-sub">EcoRuta integra las ciclovías existentes en un eje longitudinal y uno
+                    transversal, permitiendo retirar una bicicleta en un punto y devolverla en otro. Haz clic en un nodo
+                    para seleccionarlo.</p>
+            </div>
+            <div class="map-card" style="margin-top: 48px;">
+                <div class="map-legend">
+                    <span><span class="dot long"></span> Eje Longitudinal (Eje Universitario/Urbano)</span>
+                    <span><span class="dot trans"></span> Eje Transversal (Eje Patrimonial/Comercial)</span>
+                </div>
+                <svg id="netmap" viewBox="0 0 800 450">
+                    <defs>
+                        <linearGradient id="grad-long" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="var(--accent)" />
+                            <stop offset="100%" stop-color="var(--accent-soft)" />
+                        </linearGradient>
+                        <linearGradient id="grad-trans" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="var(--naranja)" />
+                            <stop offset="100%" stop-color="#FF8A65" />
+                        </linearGradient>
+                    </defs>
+
+                    <!-- Edges (routes) -->
+                    <!-- Longitudinal -->
+                    <path d="M 80,100 L 220,130 L 360,180 L 460,260 L 580,300 L 720,320" class="edge long" />
+                    <!-- Transversal -->
+                    <path d="M 180,380 L 280,330 L 400,280 L 460,260 L 520,200 L 640,110" class="edge trans" />
+
+                    <!-- Node groups (circles + text) -->
+                    <!-- Longitudinal Nodes -->
+                    <g class="node-group" onclick="selectRutaNode('la-campana-espeech')">
+                        <circle cx="80" cy="100" r="8" class="node-circle long" />
+                        <text x="80" y="80" text-anchor="middle" class="node-label">La Campana</text>
+                    </g>
+                    <g class="node-group" onclick="selectRutaNode('espeech-terminal')">
+                        <circle cx="220" cy="130" r="8" class="node-circle long" />
+                        <text x="220" y="115" text-anchor="middle" class="node-label">ESPOCH</text>
+                    </g>
+                    <g class="node-group" onclick="selectRutaNode('terminal-plaza')">
+                        <circle cx="360" cy="180" r="8" class="node-circle long" />
+                        <text x="360" y="165" text-anchor="middle" class="node-label">Terminal</text>
+                    </g>
+                    <g class="node-group" onclick="selectRutaNode('argentinos-celso')">
+                        <circle cx="580" cy="300" r="8" class="node-circle long" />
+                        <text x="580" y="320" text-anchor="middle" class="node-label">Argentinos</text>
+                    </g>
+                    <g class="node-group" onclick="selectRutaNode('argentinos-celso')">
+                        <circle cx="720" cy="320" r="8" class="node-circle long" />
+                        <text x="720" y="340" text-anchor="middle" class="node-label">Celso Rodríguez</text>
+                    </g>
+
+                    <!-- Transversal Nodes -->
+                    <g class="node-group" onclick="selectRutaNode('unach-edelberto')">
+                        <circle cx="180" cy="380" r="8" class="node-circle trans" />
+                        <text x="180" y="400" text-anchor="middle" class="node-label">UNACH</text>
+                    </g>
+                    <g class="node-group" onclick="selectRutaNode('edelberto-juan')">
+                        <circle cx="280" cy="330" r="8" class="node-circle trans" />
+                        <text x="280" y="315" text-anchor="middle" class="node-label">Edelberto Bonilla</text>
+                    </g>
+                    <g class="node-group" onclick="selectRutaNode('juan-estacion')">
+                        <circle cx="400" cy="280" r="8" class="node-circle trans" />
+                        <text x="400" y="265" text-anchor="middle" class="node-label">Juan Montalvo</text>
+                    </g>
+                    <g class="node-group" onclick="selectRutaNode('estacion-9octubre')">
+                        <circle cx="520" cy="200" r="8" class="node-circle trans" />
+                        <text x="520" y="185" text-anchor="middle" class="node-label">Estación</text>
+                    </g>
+                    <g class="node-group" onclick="selectRutaNode('9octubre-plaza')">
+                        <circle cx="640" cy="110" r="8" class="node-circle trans" />
+                        <text x="640" y="95" text-anchor="middle" class="node-label">9 de Octubre</text>
+                    </g>
+
+                    <!-- Intersection Node (Plaza Alfaro) -->
+                    <g class="node-group" onclick="selectRutaNode('plaza-argentinos')">
+                        <circle cx="460" cy="260" r="11" class="node-circle long"
+                            style="stroke: var(--accent); fill: var(--naranja); stroke-width: 3;" />
+                        <text x="460" y="240" text-anchor="middle" class="node-label" style="font-weight: 800;">Plaza
+                            Alfaro</text>
+                    </g>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== RUTAS / RESERVA ===== -->
+    <section class="rutas" id="rutas">
+        <div class="wrap">
+            <div class="section-head">
+                <span class="section-tag">Reserva</span>
+                <h2>Elige tu ruta y reserva tu bicicleta.</h2>
+                <p class="section-sub">10 rutas activas conectando los nodos de la red. Cada reserva se confirma al
+                    instante.</p>
+            </div>
+
+            <div class="filter-row">
+                <button class="filter-btn active" data-filter="todas">Todas las rutas</button>
+                <button class="filter-btn" data-filter="longitudinal">Eje longitudinal</button>
+                <button class="filter-btn" data-filter="transversal">Eje transversal</button>
+            </div>
+
+            <div class="ruta-grid" id="rutaGrid"></div>
+        </div>
+    </section>
+
+    <!-- ===== APP ===== -->
+    <section class="app-section" id="app">
+        <div class="wrap app-grid">
+            <div>
+                <span class="section-tag">La aplicación</span>
+                <h2>Desde el celular, todo el recorrido.</h2>
+                <p class="section-sub">Localiza la estación más cercana, revisa disponibilidad y desbloquea tu bicicleta
+                    escaneando un código QR.</p>
+                <div class="step-list">
+                    <div class="step">
+                        <div class="step-num">1</div>
+                        <div class="step-text">Abre la app y elige una <strong>estación cercana</strong>.</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-num">2</div>
+                        <div class="step-text">Escanea el <strong>código QR</strong> para desbloquear la bicicleta.
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-num">3</div>
+                        <div class="step-text">Recorre tu ruta — el <strong>GPS integrado</strong> la sigue en tiempo
+                            real.</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-num">4</div>
+                        <div class="step-text">Devuelve la bicicleta en <strong>cualquier nodo EcoRuta</strong> y revisa
+                            tu ahorro.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="phone-mock">
+                <div class="phone-screen">
+                    <div class="qr-box">
+                        <svg viewBox="0 0 29 29" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="29" height="29" fill="#F3EBDA" />
+                            <g fill="#0A1612">
+                                <rect x="0" y="0" width="7" height="7" />
+                                <rect x="1" y="1" width="5" height="5" fill="#F3EBDA" />
+                                <rect x="2" y="2" width="3" height="3" />
+                                <rect x="22" y="0" width="7" height="7" />
+                                <rect x="23" y="1" width="5" height="5" fill="#F3EBDA" />
+                                <rect x="24" y="2" width="3" height="3" />
+                                <rect x="0" y="22" width="7" height="7" />
+                                <rect x="1" y="23" width="5" height="5" fill="#F3EBDA" />
+                                <rect x="2" y="24" width="3" height="3" />
+                                <rect x="9" y="0" width="1" height="1" />
+                                <rect x="11" y="0" width="2" height="1" />
+                                <rect x="15" y="0" width="1" height="2" />
+                                <rect x="18" y="1" width="2" height="1" />
+                                <rect x="9" y="3" width="3" height="1" />
+                                <rect x="14" y="3" width="1" height="3" />
+                                <rect x="17" y="3" width="3" height="2" />
+                                <rect x="9" y="9" width="3" height="3" />
+                                <rect x="13" y="9" width="2" height="1" />
+                                <rect x="17" y="9" width="1" height="3" />
+                                <rect x="20" y="9" width="2" height="2" />
+                                <rect x="9" y="13" width="1" height="2" />
+                                <rect x="12" y="12" width="3" height="3" />
+                                <rect x="22" y="12" width="1" height="4" />
+                                <rect x="25" y="13" width="2" height="2" />
+                                <rect x="9" y="17" width="2" height="1" />
+                                <rect x="13" y="17" width="1" height="3" />
+                                <rect x="16" y="18" width="3" height="2" />
+                                <rect x="20" y="17" width="2" height="3" />
+                                <rect x="9" y="20" width="4" height="1" />
+                                <rect x="15" y="21" width="1" height="2" />
+                                <rect x="18" y="22" width="2" height="1" />
+                                <rect x="9" y="25" width="2" height="2" />
+                                <rect x="13" y="26" width="3" height="1" />
+                                <rect x="18" y="25" width="2" height="3" />
+                                <rect x="22" y="26" width="3" height="2" />
+                                <rect x="9" y="11" width="1" height="1" />
+                                <rect x="11" y="14" width="1" height="1" />
+                                <rect x="15" y="14" width="2" height="1" />
+                                <rect x="19" y="14" width="1" height="1" />
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="phone-caption"><strong>Escanea para empezar</strong>Desbloquea tu bicicleta en segundos.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== IMPACTO ===== -->
+    <section class="impacto">
+        <div class="wrap">
+            <div class="section-head">
+                <span class="section-tag">Impacto</span>
+                <h2>Medible desde el primer recorrido.</h2>
+            </div>
+            <div class="impacto-grid">
+                <div class="impacto-card">
+                    <div class="impacto-icon">0g</div>
+                    <h3>Emisión directa en bicicleta</h3>
+                    <p>Un trayecto de 3,5 km en vehículo motorizado genera unos 870 g de CO₂. En bicicleta, la emisión
+                        directa es prácticamente nula.</p>
+                </div>
+                <div class="impacto-card">
+                    <div class="impacto-icon">522 kg</div>
+                    <h3>CO₂ evitado por jornada</h3>
+                    <p>Si 300 personas hacen ida y vuelta en bicicleta en lugar de transporte motorizado, se evitan
+                        cerca de 522 kg de CO₂ en un solo día.</p>
+                </div>
+                <div class="impacto-card">
+                    <div class="impacto-icon">$37,8M</div>
+                    <h3>Gasto anual en movilidad estudiantil</h3>
+                    <p>Con 35.000 estudiantes en Riobamba gastando en transporte, EcoRuta puede absorber una parte
+                        importante de los viajes cortos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CIERRE ===== -->
+    <section class="cierre">
+        <div class="wrap">
+            <h2>¿Estamos listos para pedalear hacia el futuro?</h2>
+            <p class="section-sub">Riobamba ya tiene universidades, ciclovías, estudiantes y talento joven. Solo falta
+                conectarlos.</p>
+            <a href="#rutas" class="cierre-cta">Reservar mi primera bicicleta</a>
+        </div>
+    </section>
+
+    <!-- ===== FORMULARIO DE RESERVA ===== -->
+    <section class="reserva-form-section" id="reserva-form">
+        <div class="wrap">
+            <div class="form-container">
+                <div class="form-header">
+                    <h3>Completa tu reserva</h3>
+                    <p>Ingresa tus datos para confirmar tu bicicleta</p>
+                </div>
+                <form id="reservaForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="nombre">Nombre completo</label>
+                            <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="cedula">Cédula</label>
+                            <input type="text" id="cedula" name="cedula" placeholder="Número de cédula" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Correo electrónico</label>
+                            <input type="email" id="email" name="email" placeholder="tu@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="telefono">Teléfono</label>
+                            <input type="tel" id="telefono" name="telefono" placeholder="099-123-4567" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="ruta">Ruta seleccionada</label>
+                            <select id="ruta" name="ruta" required>
+                                <option value="">Selecciona una ruta</option>
+                                <option value="la-campana-espeech">La Campana → ESPOCH (lado Este)</option>
+                                <option value="espeech-terminal">ESPOCH (lado Este) → Terminal Terrestre</option>
+                                <option value="terminal-plaza">Terminal Terrestre → Plaza Alfaro</option>
+                                <option value="plaza-argentinos">Plaza Alfaro → Argentinos</option>
+                                <option value="argentinos-celso">Argentinos → Celso Rodríguez y Edelberto Bonilla
+                                </option>
+                                <option value="unach-edelberto">UNACH (vía a Guano) → Edelberto Bonilla y Antonio José
+                                    de Sucre</option>
+                                <option value="edelberto-juan">Edelberto Bonilla y Antonio José de Sucre → Juan Montalvo
+                                    y Argentinos</option>
+                                <option value="juan-estacion">Juan Montalvo y Argentinos → Estación del Ferrocarril
+                                </option>
+                                <option value="estacion-9octubre">Estación del Ferrocarril → 9 de Octubre y Juan
+                                    Montalvo</option>
+                                <option value="9octubre-plaza">9 de Octubre y Juan Montalvo → Plaza Alfaro</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="fecha">Fecha de reserva</label>
+                            <input type="date" id="fecha" name="fecha" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="hora-inicio">Hora de inicio</label>
+                            <input type="time" id="hora-inicio" name="hora-inicio" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="duracion">Duración estimada</label>
+                            <select id="duracion" name="duracion" required>
+                                <option value="1">1 hora</option>
+                                <option value="2">2 horas</option>
+                                <option value="3">3 horas</option>
+                                <option value="4">4 horas</option>
+                                <option value="8">8 horas (día completo)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="observaciones">Observaciones (opcional)</label>
+                        <textarea id="observaciones" name="observaciones" rows="3"
+                            placeholder="Algún comentario adicional..."></textarea>
+                    </div>
+                    <button type="submit" class="form-submit">Confirmar reserva</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        EcoRuta Riobamba — Una ciudad conectada a pedal.
+    </footer>
+
+    <div class="toast" id="toast"></div>
+
+    <!-- Modal de confirmación -->
+    <div class="modal-overlay" id="modal">
+        <div class="modal-content">
+            <div class="modal-icon">✅</div>
+            <h3 class="modal-title">¡Reserva confirmada!</h3>
+            <p class="modal-text">Tu bicicleta ha sido reservada exitosamente. Presenta este código en la estación para
+                recogerla.</p>
+            <div class="modal-code" id="modalCode"></div>
+            <button class="modal-close" onclick="closeModal()">Cerrar</button>
+        </div>
+    </div>
+
+    <script>
+        // Hamburger Menu Toggle
+        const navToggle = document.getElementById('navToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        if (navToggle && navLinks) {
+            navToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+        }
+
+        function closeNav() {
+            if (navLinks && navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+            }
+        }
+
+        // SVG Node Selection
+        function selectRutaNode(rutaValue) {
+            const rutaSelect = document.getElementById('ruta');
+            if (rutaSelect) {
+                rutaSelect.value = rutaValue;
+                document.getElementById('reserva-form').scrollIntoView({ behavior: 'smooth' });
+                const optionText = rutaSelect.options[rutaSelect.selectedIndex]?.text || '';
+                showToast(`Ruta seleccionada: ${optionText}`);
+            }
+        }
+
+        const rutas = [
+            { nombre: "La Campana → ESPOCH (lado Este)", tipo: "longitudinal", desc: "Ruta universitaria" },
+            { nombre: "ESPOCH (lado Este) → Terminal Terrestre", tipo: "longitudinal", desc: "Ruta urbana" },
+            { nombre: "Terminal Terrestre → Plaza Alfaro", tipo: "longitudinal", desc: "Ruta central" },
+            { nombre: "Plaza Alfaro → Argentinos", tipo: "longitudinal", desc: "Ruta comercial" },
+            { nombre: "Argentinos → Celso Rodríguez y Edelberto Bonilla", tipo: "longitudinal", desc: "Ruta de conexión" },
+            { nombre: "UNACH (vía a Guano) → Edelberto Bonilla y Antonio José de Sucre", tipo: "transversal", desc: "Ruta universitaria" },
+            { nombre: "Edelberto Bonilla y Antonio José de Sucre → Juan Montalvo y Argentinos", tipo: "transversal", desc: "Ruta urbana" },
+            { nombre: "Juan Montalvo y Argentinos → Estación del Ferrocarril", tipo: "transversal", desc: "Ruta patrimonial" },
+            { nombre: "Estación del Ferrocarril → 9 de Octubre y Juan Montalvo", tipo: "transversal", desc: "Ruta central" },
+            { nombre: "9 de Octubre y Juan Montalvo → Plaza Alfaro", tipo: "transversal", desc: "Ruta de integración" },
+        ];
+
+        const grid = document.getElementById('rutaGrid');
+
+        function renderRutas(filter) {
+            grid.innerHTML = '';
+            rutas
+                .filter(r => filter === 'todas' || r.tipo === filter)
+                .forEach((r, i) => {
+                    const card = document.createElement('div');
+                    card.className = 'ruta-card';
+                    card.dataset.tipo = r.tipo;
+                    const partes = r.nombre.split(' → ');
+                    card.innerHTML = `
+          <div class="ruta-top">
+            <span class="ruta-tipo-chip">${r.tipo === 'longitudinal' ? 'Longitudinal' : 'Transversal'}</span>
+            <span class="estado">Disponible</span>
+          </div>
+          <div class="ruta-path">${partes[0]} <span class="arrow">→</span> ${partes[1]}</div>
+          <div class="ruta-desc">${r.desc}</div>
+          <div class="ruta-bottom">
+            <div class="precio">$0,25 <span>/ hora</span></div>
+            <button class="btn-reservar">Reservar</button>
+          </div>
+        `;
+                    grid.appendChild(card);
+                });
+
+            document.querySelectorAll('.btn-reservar').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const card = e.target.closest('.ruta-card');
+                    const path = card.querySelector('.ruta-path').textContent.trim();
+                    const rutaSelect = document.getElementById('ruta');
+
+                    // Encontrar la opción correspondiente en el select
+                    const rutaText = path.replace(' → ', ' ');
+                    for (let option of rutaSelect.options) {
+                        if (option.text.includes(rutaText.split(' ')[0]) && option.text.includes(rutaText.split(' ')[2])) {
+                            rutaSelect.value = option.value;
+                            break;
+                        }
+                    }
+
+                    // Scroll al formulario
+                    document.getElementById('reserva-form').scrollIntoView({ behavior: 'smooth' });
+                });
+            });
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.textContent = msg;
+            toast.classList.add('show');
+            clearTimeout(window._toastTimer);
+            window._toastTimer = setTimeout(() => toast.classList.remove('show'), 3200);
+        }
+
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                renderRutas(btn.dataset.filter);
+            });
+        });
+
+        // Form submission handler
+        document.getElementById('reservaForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const nombre = formData.get('nombre');
+
+            // Generar código aleatorio
+            const codigo = generarCodigoAleatorio();
+            document.getElementById('modalCode').textContent = codigo;
+
+            // Mostrar modal
+            document.getElementById('modal').classList.add('show');
+            e.target.reset();
+        });
+
+        function generarCodigoAleatorio() {
+            const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            let codigo = '';
+            for (let i = 0; i < 8; i++) {
+                codigo += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
+            }
+            return codigo;
+        }
+
+        function closeModal() {
+            document.getElementById('modal').classList.remove('show');
+        }
+
+        // Cerrar modal al hacer clic fuera
+        document.getElementById('modal').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('modal')) {
+                closeModal();
+            }
+        });
+
+        renderRutas('todas');
+    </script>
+
+</body>
+
+</html>
