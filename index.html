@@ -420,19 +420,19 @@
 
         /* ===== SECTION GENERIC ===== */
         section {
-            padding: 120px 0;
+            padding: 80px 0;
             position: relative;
         }
 
         @media (max-width:640px) {
             section {
-                padding: 80px 0;
+                padding: 50px 0;
             }
         }
 
         .section-head {
             max-width: 640px;
-            margin-bottom: 64px;
+            margin-bottom: 40px;
         }
 
         .section-tag {
@@ -623,12 +623,6 @@
             border-radius: var(--radius);
             padding: 40px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .eje-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.04);
         }
 
         .eje-card.longitudinal {
@@ -916,7 +910,7 @@
         /* ===== FORMULARIO DE RESERVA ===== */
         .reserva-form-section {
             background: linear-gradient(180deg, var(--gris-medio) 0%, var(--fondo-suave) 100%);
-            padding: 100px 0;
+            padding: 70px 0;
         }
 
         .form-container {
@@ -1248,6 +1242,110 @@
             background: var(--fondo-suave);
         }
 
+        /* ===== PREMIUM FOOTER EXTENSION ===== */
+        .footer-detailed {
+            background: var(--negro);
+            color: #9CA3AF;
+            padding: 80px 0 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.9rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr repeat(3, 1fr);
+            gap: 48px;
+            margin-bottom: 60px;
+        }
+
+        @media (max-width: 768px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 36px;
+            }
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .footer-brand .logo {
+            color: var(--blanco);
+        }
+
+        .footer-brand p {
+            line-height: 1.6;
+            max-width: 300px;
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 16px;
+            margin-top: 10px;
+        }
+
+        .footer-social-link {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--blanco);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .footer-social-link:hover {
+            background: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .footer-col h4 {
+            color: var(--blanco);
+            font-family: var(--display);
+            font-weight: 600;
+            font-size: 1.05rem;
+            margin-bottom: 24px;
+            position: relative;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-col ul a {
+            color: #9CA3AF;
+            transition: color 0.2s;
+        }
+
+        .footer-col ul a:hover {
+            color: var(--blanco);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 640px) {
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
         /* toast */
         .toast {
             position: fixed;
@@ -1372,7 +1470,8 @@
 
     <nav>
         <div class="nav-inner">
-            <div class="logo"><span class="logo-mark"><img src="assets/logo.jpg" alt="EcoRuta Logo"></span>EcoRuta Riobamba</div>
+            <div class="logo"><span class="logo-mark"><img src="assets/logo.jpg" alt="EcoRuta Logo"></span>EcoRuta
+                Riobamba</div>
             <button class="nav-toggle" id="navToggle" aria-label="Abrir menú">
                 <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none">
                     <line x1="3" y1="12" x2="21" y2="12"></line>
@@ -1417,7 +1516,8 @@
                     </div>
                     <div>
                         <div class="stat-num"><span>1.272</span></div>
-                        <div class="stat-label">accidentes de tránsito en Riobamba, solo en el primer semestre de 2024</div>
+                        <div class="stat-label">accidentes de tránsito en Riobamba, solo en el primer semestre de 2024
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1453,7 +1553,6 @@
             </div>
             <div class="accident-panel" style="margin-top: 48px;">
                 <div class="accident-header">
-                    <span class="accident-icon">⚠️</span>
                     <h3>Siniestralidad Vial en Chimborazo</h3>
                 </div>
                 <div class="accident-grid">
@@ -1600,56 +1699,292 @@
                     </div>
                 </div>
             </div>
-            <div class="phone-mock">
-                <div class="phone-screen">
-                    <div class="qr-box">
-                        <svg viewBox="0 0 29 29" xmlns="http://www.w3.org/2000/svg">
-                            <rect width="29" height="29" fill="#F3EBDA" />
-                            <g fill="#0A1612">
-                                <rect x="0" y="0" width="7" height="7" />
-                                <rect x="1" y="1" width="5" height="5" fill="#F3EBDA" />
-                                <rect x="2" y="2" width="3" height="3" />
-                                <rect x="22" y="0" width="7" height="7" />
-                                <rect x="23" y="1" width="5" height="5" fill="#F3EBDA" />
-                                <rect x="24" y="2" width="3" height="3" />
-                                <rect x="0" y="22" width="7" height="7" />
-                                <rect x="1" y="23" width="5" height="5" fill="#F3EBDA" />
-                                <rect x="2" y="24" width="3" height="3" />
-                                <rect x="9" y="0" width="1" height="1" />
-                                <rect x="11" y="0" width="2" height="1" />
-                                <rect x="15" y="0" width="1" height="2" />
-                                <rect x="18" y="1" width="2" height="1" />
-                                <rect x="9" y="3" width="3" height="1" />
-                                <rect x="14" y="3" width="1" height="3" />
-                                <rect x="17" y="3" width="3" height="2" />
-                                <rect x="9" y="9" width="3" height="3" />
-                                <rect x="13" y="9" width="2" height="1" />
-                                <rect x="17" y="9" width="1" height="3" />
-                                <rect x="20" y="9" width="2" height="2" />
-                                <rect x="9" y="13" width="1" height="2" />
-                                <rect x="12" y="12" width="3" height="3" />
-                                <rect x="22" y="12" width="1" height="4" />
-                                <rect x="25" y="13" width="2" height="2" />
-                                <rect x="9" y="17" width="2" height="1" />
-                                <rect x="13" y="17" width="1" height="3" />
-                                <rect x="16" y="18" width="3" height="2" />
-                                <rect x="20" y="17" width="2" height="3" />
-                                <rect x="9" y="20" width="4" height="1" />
-                                <rect x="15" y="21" width="1" height="2" />
-                                <rect x="18" y="22" width="2" height="1" />
-                                <rect x="9" y="25" width="2" height="2" />
-                                <rect x="13" y="26" width="3" height="1" />
-                                <rect x="18" y="25" width="2" height="3" />
-                                <rect x="22" y="26" width="3" height="2" />
-                                <rect x="9" y="11" width="1" height="1" />
-                                <rect x="11" y="14" width="1" height="1" />
-                                <rect x="15" y="14" width="2" height="1" />
-                                <rect x="19" y="14" width="1" height="1" />
-                            </g>
-                        </svg>
+            <div class="phone-mock"
+                style="width: 290px; padding: 10px; overflow: hidden; border: 12px solid #0f172a; border-radius: 38px; background: #0f172a; box-shadow: 0 25px 60px -10px rgba(0,0,0,0.45); font-family: var(--body);">
+                <div class="phone-screen" id="phoneScreen"
+                    style="padding: 0; min-height: 520px; height: 100%; display: flex; flex-direction: column; justify-content: space-between; overflow: hidden; background: #ffffff; color: #1e293b; border-radius: 28px; position: relative;">
+
+                    <!-- VISTA: INICIO -->
+                    <div id="phoneViewHome"
+                        style="padding: 20px 14px; display: flex; flex-direction: column; flex-grow: 1; overflow-y: auto; width: 100%;">
+                        <!-- Header -->
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; width: 100%;">
+                            <div>
+                                <div style="font-size: 0.72rem; color: #64748b; font-weight: 500;">Hola de nuevo,</div>
+                                <div
+                                    style="font-size: 1.15rem; font-weight: 800; color: #0f172a; display: flex; align-items: center; gap: 4px;">
+                                    Bienvenido 🚲</div>
+                            </div>
+                            <div
+                                style="width: 38px; height: 38px; border-radius: 50%; background: #6ee7b7; color: #064e3b; font-weight: 700; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; border: 2px solid rgba(0,0,0,0.05);">
+                                EC
+                            </div>
+                        </div>
+
+                        <!-- Search bar -->
+                        <div style="width: 100%; position: relative; margin-bottom: 18px;">
+                            <input type="text" placeholder="🔍 Buscar parada en Riobamba..."
+                                style="width: 100%; padding: 10px 14px; border-radius: 12px; border: none; background: #f1f5f9; color: #0f172a; font-size: 0.76rem; outline: none; border: 1px solid #e2e8f0;">
+                        </div>
+
+                        <!-- New Route Promo Card -->
+                        <div
+                            style="width: 100%; background: #3cb371; border-radius: 16px; padding: 14px; margin-bottom: 18px; position: relative; display: flex; flex-direction: column; gap: 6px; box-shadow: 0 4px 15px rgba(60,179,113,0.25); color: #ffffff;">
+                            <div
+                                style="font-size: 0.75rem; font-weight: 600; display: flex; align-items: center; gap: 4px;">
+                                🏔️ Ruta Chimborazo</div>
+                            <div style="font-size: 0.95rem; font-weight: 800; line-height: 1.25;">¡Nueva!</div>
+                            <div style="font-size: 0.65rem; color: rgba(255,255,255,0.9); max-width: 65%;">Reserva antes
+                                del domingo y obtén 1hr gratis</div>
+                            <button onclick="switchPhoneView('reserva')"
+                                style="position: absolute; right: 12px; bottom: 12px; background: #eab308; color: #1e1b4b; font-size: 0.72rem; font-weight: 700; padding: 8px 14px; border-radius: 10px; transition: transform 0.2s; box-shadow: 0 2px 8px rgba(0,0,0,0.15); border: none; cursor: pointer;">
+                                Reservar
+                            </button>
+                        </div>
+
+                        <!-- Map Section -->
+                        <div
+                            style="width: 100%; background: #f8fafc; border-radius: 16px; padding: 12px; color: #1e293b; display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; flex-grow: 1; min-height: 180px; border: 1px solid #f1f5f9;">
+                            <div
+                                style="font-size: 0.75rem; font-weight: 700; color: #064e3b; letter-spacing: 0.05em; text-transform: uppercase;">
+                                Mapa de Paradas</div>
+
+                            <!-- Map Grid Layout -->
+                            <div
+                                style="width: 100%; flex-grow: 1; background: #cbd5e1; border-radius: 12px; position: relative; overflow: hidden; display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(3, 1fr); gap: 4px; padding: 4px;">
+                                <div style="background: #f1f5f9; border-radius: 4px;"></div>
+                                <div style="background: #f1f5f9; border-radius: 4px;"></div>
+                                <div style="background: #f1f5f9; border-radius: 4px;"></div>
+                                <div style="background: #f1f5f9; border-radius: 4px;"></div>
+                                <div style="background: #f1f5f9; border-radius: 4px;"></div>
+                                <div style="background: #f1f5f9; border-radius: 4px;"></div>
+                                <div style="background: #f1f5f9; border-radius: 4px;"></div>
+                                <div style="background: #f1f5f9; border-radius: 4px;"></div>
+                                <div style="background: #f1f5f9; border-radius: 4px;"></div>
+
+                                <!-- Marker 1 (UNACH) -->
+                                <div onclick="switchPhoneView('mapa')"
+                                    style="position: absolute; top: 15%; left: 15%; width: 20px; height: 20px; background: #10b981; border-radius: 50%; border: 2px solid #ffffff; display: flex; align-items: center; justify-content: center; font-size: 0.6rem; cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,0.15);">
+                                    🚲
+                                </div>
+
+                                <!-- Riobamba Central Badge -->
+                                <div
+                                    style="position: absolute; top: 25%; left: 35%; background: #475569; color: #ffffff; font-size: 0.55rem; font-weight: 700; padding: 2px 6px; border-radius: 4px; z-index: 10; pointer-events: none; text-transform: uppercase; letter-spacing: 0.03em;">
+                                    Riobamba
+                                </div>
+
+                                <!-- Marker 2 (Terminal) -->
+                                <div onclick="switchPhoneView('mapa')"
+                                    style="position: absolute; top: 40%; left: 50%; width: 20px; height: 20px; background: #ef4444; border-radius: 50%; border: 2px solid #ffffff; display: flex; align-items: center; justify-content: center; font-size: 0.6rem; cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,0.15);">
+                                    🚲
+                                </div>
+
+                                <!-- Marker 3 (Plaza Alfaro) -->
+                                <div onclick="switchPhoneView('mapa')"
+                                    style="position: absolute; top: 60%; left: 70%; width: 20px; height: 20px; background: #f59e0b; border-radius: 50%; border: 2px solid #ffffff; display: flex; align-items: center; justify-content: center; font-size: 0.6rem; cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,0.15);">
+                                    🚲
+                                </div>
+                            </div>
+
+                            <!-- Active stops bar -->
+                            <div
+                                style="display: flex; justify-content: space-between; align-items: center; font-size: 0.72rem;">
+                                <span style="color: #475569; font-weight: 500;">4 paradas activas</span>
+                                <button onclick="switchPhoneView('mapa')"
+                                    style="font-weight: 700; color: #ffffff; background: #0f172a; padding: 4px 10px; border-radius: 6px; font-size: 0.65rem; border: none; cursor: pointer;">Ver
+                                    mapa</button>
+                            </div>
+                        </div>
                     </div>
-                    <div class="phone-caption"><strong>Escanea para empezar</strong>Desbloquea tu bicicleta en segundos.
+
+                    <!-- VISTA: MAPA COMPLETO INTERACTIVO (SEGUNDA CAPTURA) -->
+                    <div id="phoneViewMap"
+                        style="display: none; flex-direction: column; flex-grow: 1; width: 100%; background: #d0e7dc; relative;">
+                        <!-- Header del mapa -->
+                        <div
+                            style="background: #091914; padding: 16px 14px; display: flex; justify-content: space-between; align-items: center;">
+                            <span
+                                style="font-weight: 800; font-size: 0.98rem; color: #ffffff; font-family: var(--display);">Paradas
+                                EcoRuta</span>
+                            <button onclick="switchPhoneView('home')"
+                                style="color: #94a3b8; font-size: 1.2rem; cursor: pointer; line-height: 1; border: none; background: transparent;">✕</button>
+                        </div>
+
+                        <!-- Mapa cuadriculado con calles y paradas -->
+                        <div
+                            style="flex-grow: 1; position: relative; background: #c2ded0; background-image: radial-gradient(rgba(0,0,0,0.06) 1.5px, transparent 1.5px); background-size: 16px 16px; overflow: hidden; padding: 14px;">
+
+                            <!-- Calles dibujadas de fondo -->
+                            <div
+                                style="position: absolute; top: 0; left: 28%; width: 14px; height: 100%; background: #ffffff;">
+                            </div>
+                            <div
+                                style="position: absolute; top: 0; left: 58%; width: 14px; height: 100%; background: #ffffff;">
+                            </div>
+                            <div
+                                style="position: absolute; top: 38%; left: 0; width: 100%; height: 14px; background: #ffffff;">
+                            </div>
+                            <div
+                                style="position: absolute; top: 68%; left: 0; width: 100%; height: 14px; background: #ffffff;">
+                            </div>
+
+                            <!-- Parada Maldonado (Verde) -->
+                            <div onclick="selectPhoneStop('Maldonado')"
+                                style="position: absolute; top: 22%; left: 12%; display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: pointer;">
+                                <div
+                                    style="width: 24px; height: 24px; background: #10b981; border-radius: 50%; border: 2.5px solid #ffffff; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; box-shadow: 0 3px 8px rgba(0,0,0,0.2);">
+                                    🚲</div>
+                                <div
+                                    style="background: #ffffff; border-radius: 6px; padding: 2px 6px; font-size: 0.55rem; font-weight: 700; color: #064e3b; box-shadow: 0 1px 4px rgba(0,0,0,0.1); white-space: nowrap;">
+                                    Maldonado</div>
+                            </div>
+
+                            <!-- Parada ESPOCH (Verde) -->
+                            <div onclick="selectPhoneStop('ESPOCH')"
+                                style="position: absolute; top: 18%; left: 68%; display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: pointer;">
+                                <div
+                                    style="width: 24px; height: 24px; background: #10b981; border-radius: 50%; border: 2.5px solid #ffffff; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; box-shadow: 0 3px 8px rgba(0,0,0,0.2);">
+                                    🚲</div>
+                                <div
+                                    style="background: #ffffff; border-radius: 6px; padding: 2px 6px; font-size: 0.55rem; font-weight: 700; color: #064e3b; box-shadow: 0 1px 4px rgba(0,0,0,0.1); white-space: nowrap;">
+                                    ESPOCH</div>
+                            </div>
+
+                            <!-- Parada Guayaquil (Naranja) -->
+                            <div onclick="selectPhoneStop('Guayaquil')"
+                                style="position: absolute; top: 44%; left: 50%; display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: pointer;">
+                                <div
+                                    style="width: 24px; height: 24px; background: #f59e0b; border-radius: 50%; border: 2.5px solid #ffffff; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; box-shadow: 0 3px 8px rgba(0,0,0,0.2);">
+                                    🚲</div>
+                                <div
+                                    style="background: #ffffff; border-radius: 6px; padding: 2px 6px; font-size: 0.55rem; font-weight: 700; color: #78350f; box-shadow: 0 1px 4px rgba(0,0,0,0.1); white-space: nowrap;">
+                                    Guayaquil</div>
+                            </div>
+
+                            <!-- Parada Catedral (Verde) -->
+                            <div onclick="selectPhoneStop('Catedral')"
+                                style="position: absolute; top: 62%; left: 24%; display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: pointer;">
+                                <div
+                                    style="width: 24px; height: 24px; background: #10b981; border-radius: 50%; border: 2.5px solid #ffffff; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; box-shadow: 0 3px 8px rgba(0,0,0,0.2);">
+                                    🚲</div>
+                                <div
+                                    style="background: #ffffff; border-radius: 6px; padding: 2px 6px; font-size: 0.55rem; font-weight: 700; color: #064e3b; box-shadow: 0 1px 4px rgba(0,0,0,0.1); white-space: nowrap;">
+                                    Catedral</div>
+                            </div>
+
+                            <!-- Parada San Alfonso (Rojo) -->
+                            <div onclick="selectPhoneStop('San Alfonso')"
+                                style="position: absolute; top: 74%; left: 60%; display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: pointer;">
+                                <div
+                                    style="width: 24px; height: 24px; background: #ef4444; border-radius: 50%; border: 2.5px solid #ffffff; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; box-shadow: 0 3px 8px rgba(0,0,0,0.2);">
+                                    🚲</div>
+                                <div
+                                    style="background: #ffffff; border-radius: 6px; padding: 2px 6px; font-size: 0.55rem; font-weight: 700; color: #991b1b; box-shadow: 0 1px 4px rgba(0,0,0,0.1); white-space: nowrap;">
+                                    S. Alfonso</div>
+                            </div>
+
+                            <!-- Leyenda panel flotante -->
+                            <div
+                                style="position: absolute; bottom: 8px; left: 8px; right: 8px; background: #ffffff; border-radius: 14px; padding: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); display: flex; flex-direction: column; gap: 6px;">
+                                <div style="font-size: 0.7rem; font-weight: 800; color: #1f2937;">Leyenda</div>
+                                <div
+                                    style="display: flex; gap: 8px; flex-wrap: wrap; font-size: 0.62rem; color: #4b5563;">
+                                    <div style="display: flex; align-items: center; gap: 4px;"><span
+                                            style="width: 8px; height: 8px; border-radius: 50%; background: #10b981; display: inline-block;"></span>
+                                        Disponible</div>
+                                    <div style="display: flex; align-items: center; gap: 4px;"><span
+                                            style="width: 8px; height: 8px; border-radius: 50%; background: #f59e0b; display: inline-block;"></span>
+                                        Pocas bicis</div>
+                                    <div style="display: flex; align-items: center; gap: 4px;"><span
+                                            style="width: 8px; height: 8px; border-radius: 50%; background: #ef4444; display: inline-block;"></span>
+                                        Sin bicis</div>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
+
+                    <!-- VISTA: RESERVA INTERNA SPA -->
+                    <div id="phoneViewReserva"
+                        style="display: none; flex-direction: column; flex-grow: 1; width: 100%; padding: 20px 14px; overflow-y: auto;">
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                            <h4
+                                style="font-size: 1.05rem; font-weight: 800; color: #0f172a; font-family: var(--display);">
+                                Reservar en App</h4>
+                            <button onclick="switchPhoneView('home')"
+                                style="font-size: 0.75rem; font-weight: 700; color: var(--accent); background: none; border: none; cursor: pointer;">Atrás</button>
+                        </div>
+
+                        <!-- Formulario Express en Celular -->
+                        <div style="display: flex; flex-direction: column; gap: 10px; font-size: 0.75rem;">
+                            <div>
+                                <label style="display: block; font-weight: 600; margin-bottom: 4px;">Ruta a
+                                    reservar</label>
+                                <select id="phoneSelectRuta"
+                                    style="width: 100%; padding: 8px 10px; border-radius: 8px; border: 1px solid #cbd5e1; background: #f8fafc; font-size: 0.72rem;">
+                                    <option value="la-campana-espeech">La Campana → ESPOCH</option>
+                                    <option value="terminal-plaza">Terminal → Plaza Alfaro</option>
+                                    <option value="unach-edelberto">UNACH → Edelberto Bonilla</option>
+                                    <option value="9octubre-plaza">9 de Octubre → Plaza Alfaro</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label style="display: block; font-weight: 600; margin-bottom: 4px;">Tu Nombre</label>
+                                <input type="text" id="phoneInputNombre" placeholder="Ingresa tu nombre"
+                                    style="width: 100%; padding: 8px 10px; border-radius: 8px; border: 1px solid #cbd5e1; font-size: 0.72rem;">
+                            </div>
+                            <div>
+                                <label style="display: block; font-weight: 600; margin-bottom: 4px;">Duración</label>
+                                <select id="phoneSelectDuracion" onchange="updatePhonePrice()"
+                                    style="width: 100%; padding: 8px 10px; border-radius: 8px; border: 1px solid #cbd5e1; background: #f8fafc; font-size: 0.72rem;">
+                                    <option value="1">1 hora ($0.25)</option>
+                                    <option value="2">2 horas ($0.50)</option>
+                                    <option value="3">3 horas ($0.75)</option>
+                                    <option value="4">4 horas ($1.00)</option>
+                                </select>
+                            </div>
+
+                            <div
+                                style="background: #f8fafc; border-radius: 8px; padding: 10px; border: 1px dashed var(--accent-soft); display: flex; justify-content: space-between; align-items: center; margin-top: 6px;">
+                                <span style="font-weight: 600;">Total estimado:</span>
+                                <span id="phonePrecioDisplay"
+                                    style="font-weight: 700; color: var(--accent); font-size: 0.95rem;">$0.25</span>
+                            </div>
+
+                            <button onclick="submitPhoneReserva()"
+                                style="width: 100%; padding: 10px; background: var(--accent); color: #ffffff; font-weight: 700; border-radius: 20px; border: none; margin-top: 10px; cursor: pointer; text-align: center;">Confirmar
+                                en Celular</button>
+                        </div>
+                    </div>
+
+                    <!-- Bottom Nav Navigation Bar -->
+                    <div
+                        style="width: 100%; border-top: 1px solid #f1f5f9; padding: 10px 0; display: grid; grid-template-columns: repeat(4, 1fr); text-align: center; font-size: 0.6rem; color: #64748b; background: #ffffff; z-index: 20;">
+                        <div onclick="switchPhoneView('home')" id="phoneNavHomeBtn"
+                            style="cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 2px; color: #10b981;">
+                            <span style="font-size: 1.1rem;">🏠</span>
+                            <strong>Inicio</strong>
+                        </div>
+                        <div onclick="switchPhoneView('mapa')" id="phoneNavMapaBtn"
+                            style="cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 2px;">
+                            <span style="font-size: 1.1rem;">🗺️</span>
+                            <strong>Mapa</strong>
+                        </div>
+                        <div onclick="switchPhoneView('reserva')" id="phoneNavReservaBtn"
+                            style="cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 2px;">
+                            <span style="font-size: 1.1rem;">➕</span>
+                            <strong>Reservar</strong>
+                        </div>
+                        <div onclick="showToast('Historial de viajes vacío actualmente.')"
+                            style="cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 2px;">
+                            <span style="font-size: 1.1rem;">📋</span>
+                            <strong>Historial</strong>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -1773,8 +2108,77 @@
         </div>
     </section>
 
-    <footer>
-        EcoRuta Riobamba — Una ciudad conectada a pedal.
+    <!-- ===== FOOTER DETALLADO ===== -->
+    <footer class="footer-detailed">
+        <div class="wrap">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <span class="logo-mark"><img src="assets/logo.jpg" alt="EcoRuta Logo"></span>
+                        EcoRuta Riobamba
+                    </div>
+                    <p>Conectando la ciudad, reduciendo emisiones y mejorando la calidad de vida de los riobambeños a
+                        pedal.</p>
+                    <div class="footer-socials">
+                        <a href="#" class="footer-social-link" aria-label="Facebook">
+                            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2"
+                                fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                            </svg>
+                        </a>
+                        <a href="#" class="footer-social-link" aria-label="Twitter">
+                            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2"
+                                fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z">
+                                </path>
+                            </svg>
+                        </a>
+                        <a href="#" class="footer-social-link" aria-label="Instagram">
+                            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2"
+                                fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Nuestra Red</h4>
+                    <ul>
+                        <li><a href="#red">Eje Longitudinal</a></li>
+                        <li><a href="#red">Eje Transversal</a></li>
+                        <li><a href="#rutas">Tarifas y Horarios</a></li>
+                        <li><a href="#app">Mapa de Paradas</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Soporte</h4>
+                    <ul>
+                        <li><a href="#reserva-form">Reservar Bici</a></li>
+                        <li><a href="#">Reportar Problema</a></li>
+                        <li><a href="#">Preguntas Frecuentes</a></li>
+                        <li><a href="#">Centros de Ayuda</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contacto</h4>
+                    <ul>
+                        <li>info@ecorutariobamba.com</li>
+                        <li>+593 3 296 1234</li>
+                        <li>Av. Antonio José de Sucre, Riobamba</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div>&copy; 2026 EcoRuta Riobamba. Todos los derechos reservados.</div>
+                <div style="display: flex; gap: 20px;">
+                    <a href="#" style="color: #9CA3AF;">Política de Privacidad</a>
+                    <a href="#" style="color: #9CA3AF;">Términos de Uso</a>
+                </div>
+            </div>
+        </div>
     </footer>
 
     <div class="toast" id="toast"></div>
@@ -1808,6 +2212,106 @@
             if (navLinks && navLinks.classList.contains('active')) {
                 navLinks.classList.remove('active');
             }
+        }
+
+        // SPA Navigation for Mobile Mockup
+        function switchPhoneView(view) {
+            const homeView = document.getElementById('phoneViewHome');
+            const mapView = document.getElementById('phoneViewMap');
+            const reservaView = document.getElementById('phoneViewReserva');
+
+            const homeBtn = document.getElementById('phoneNavHomeBtn');
+            const mapaBtn = document.getElementById('phoneNavMapaBtn');
+            const reservaBtn = document.getElementById('phoneNavReservaBtn');
+
+            // Hide all views
+            if (homeView) homeView.style.display = 'none';
+            if (mapView) mapView.style.display = 'none';
+            if (reservaView) reservaView.style.display = 'none';
+
+            // Reset active button colors
+            [homeBtn, mapaBtn, reservaBtn].forEach(btn => {
+                if (btn) btn.style.color = '#64748b';
+            });
+
+            // Show selected view and activate button
+            if (view === 'home') {
+                if (homeView) homeView.style.display = 'flex';
+                if (homeBtn) homeBtn.style.color = '#10b981';
+            } else if (view === 'mapa') {
+                if (mapView) mapView.style.display = 'flex';
+                if (mapaBtn) mapaBtn.style.color = '#10b981';
+            } else if (view === 'reserva') {
+                if (reservaView) reservaView.style.display = 'flex';
+                if (reservaBtn) reservaBtn.style.color = '#10b981';
+            }
+        }
+
+        // Click handler for stops on the phone map
+        function selectPhoneStop(stopName) {
+            const stopsData = {
+                'Maldonado': 'Disponible - 8 bicicletas libres',
+                'ESPOCH': 'Disponible - 12 bicicletas libres',
+                'Guayaquil': 'Pocas bicis - 2 bicicletas libres',
+                'Catedral': 'Disponible - 6 bicicletas libres',
+                'San Alfonso': 'Agotado - Sin bicicletas en esta estación'
+            };
+
+            const status = stopsData[stopName] || 'Información no disponible';
+            showToast(`Estación ${stopName}: ${status}`);
+
+            // Pre-fill select option in booking form if available
+            if (stopName !== 'San Alfonso') {
+                const phoneRutaSelect = document.getElementById('phoneSelectRuta');
+                if (phoneRutaSelect) {
+                    if (stopName === 'ESPOCH' || stopName === 'Maldonado') {
+                        phoneRutaSelect.value = 'la-campana-espeech';
+                    } else if (stopName === 'Guayaquil') {
+                        phoneRutaSelect.value = 'terminal-plaza';
+                    } else if (stopName === 'Catedral') {
+                        phoneRutaSelect.value = 'unach-edelberto';
+                    }
+                }
+                switchPhoneView('reserva');
+            }
+        }
+
+        // Phone Form Price calculation
+        function updatePhonePrice() {
+            const phoneDuracionSelect = document.getElementById('phoneSelectDuracion');
+            const phonePrecioDisplay = document.getElementById('phonePrecioDisplay');
+            if (phoneDuracionSelect && phonePrecioDisplay) {
+                const hours = parseInt(phoneDuracionSelect.value) || 1;
+                const total = (hours * 0.25).toFixed(2);
+                phonePrecioDisplay.textContent = `$${total}`;
+            }
+        }
+
+        // Submit Booking from internal Phone
+        function submitPhoneReserva() {
+            const nombreInput = document.getElementById('phoneInputNombre');
+            const name = nombreInput ? nombreInput.value.trim() : '';
+
+            if (!name) {
+                showToast('Por favor, ingresa tu nombre.');
+                return;
+            }
+
+            const phoneSelectDuracion = document.getElementById('phoneSelectDuracion');
+            const hours = phoneSelectDuracion ? parseInt(phoneSelectDuracion.value) : 1;
+            const total = (hours * 0.25).toFixed(2);
+
+            // Generate random validation code
+            const codigo = generarCodigoAleatorio();
+            document.getElementById('modalCode').textContent = codigo;
+            document.getElementById('modalPrecioText').textContent = `Total a pagar: $${total}`;
+
+            // Show main confirmation modal
+            document.getElementById('modal').classList.add('show');
+
+            // Reset fields and go back home
+            if (nombreInput) nombreInput.value = '';
+            switchPhoneView('home');
         }
 
         // Node Selection
